@@ -1,0 +1,38 @@
+{
+	"name": "gatsby-boilerplate",
+	"private": true,
+	"description": "A simple starter to get up and developing quickly with Gatsby",
+	"version": "0.0.1",
+	"author": "Yisrael Grimes <yisraelgrimes@gmail.com>",
+	"keywords": [
+		"gatsby"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yisraelgrimes/gatsby-boilerplate"
+	},
+	"bugs": {
+		"url": "https://github.com/yisraelgrimes/gatsby-boilerplate"
+	},
+	"scripts": {
+		"develop": "gatsby develop",
+		"build": "gatsby build",
+		"start": "npm run develop",
+		"serve": "gatsby serve",
+		"clean": "gatsby clean"
+	},
+	"dependencies": {
+		"gatsby": "^2.19.12",
+		"gatsby-plugin-manifest": "^2.2.41",
+		"gatsby-plugin-offline": "^3.0.34",
+		"gatsby-plugin-sitemap": "^2.2.27",
+		"gatsby-transformer-sharp": "^2.3.14",
+		"prop-types": "^15.7.2",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0"
+	},
+	"devDependencies": {
+		"@workwithizzi/eslint-config-react": "^0.0.2"
+	}
+}
