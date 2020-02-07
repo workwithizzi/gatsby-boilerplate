@@ -1,7 +1,7 @@
 import React from "react"
 
 
-const LogoInlineSvg = ({ fillColor, title, desc, titleId, ariaHidden, className }) => {
+const InlineLogo = ({ fillColor, title, desc, titleId, ariaHidden, className }) => {
 	return (
 		<svg
 			aria-labelledby={titleId}
@@ -27,11 +27,11 @@ const LogoInlineSvg = ({ fillColor, title, desc, titleId, ariaHidden, className 
 
 // TODO: Add query to get the theme color from 'gatsby-plugin-manifest' option and make it the default fillColor
 
-LogoInlineSvg.defaultProps = {
+InlineLogo.defaultProps = {
 	fillColor: `none`,
 	titleId: `headerLogo`,
 	ariaHidden: `false`,
 }
 
 
-export { LogoInlineSvg }
+export { InlineLogo }
