@@ -8,7 +8,7 @@ import { Footer } from "./Footer"
 import { SEO } from "./Seo"
 
 
-const Layout = ({ title, children }) => {
+const Layout = ({ title, children, withSidebar }) => {
 	return (
 		<>
 			<SEO title={title} />
@@ -23,7 +23,7 @@ const Layout = ({ title, children }) => {
 				{children}
 			</main>
 
-			<Sidebar />
+			{ withSidebar && <Sidebar /> }
 
 			<Footer />
 
@@ -35,7 +35,11 @@ const Layout = ({ title, children }) => {
 Layout.propTypes = {
 	title: PropTypes.node.isRequired,
 	children: PropTypes.node.isRequired,
+	withSidebar: PropTypes.bool,
 }
 
+Layout.defaultProps = {
+	withSidebar: false,
+}
 
 export { Layout }
