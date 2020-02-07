@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Nav } from "./Nav"
-import { LogoInlineSvg } from "./LogoInlineSvg"
+import { InlineLogo } from "./svgs/InlineLogo"
 // import logo from "../images/logo.svg"
 
 
@@ -27,7 +27,7 @@ const Header = ({ withSearch }) => {
 				{site.siteMetadata.title}
 				{/* Div around logo is temporary */}
 				<div style={{height: `100px`, width: `100px`, color:`#000`}}>
-					<LogoInlineSvg
+					<InlineLogo
 						fillColor="orange"
 						title="SpaceCat"
 						desc="This is a cat wit an astronaut helmet"
