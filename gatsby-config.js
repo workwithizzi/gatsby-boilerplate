@@ -8,10 +8,26 @@ module.exports = {
 		title: `Boilerplate Title`,
 		description: `This is a site description!`,
 		author: `@GrimesClassic`,
+		menuLinks: [
+			{
+				name: `Home`,
+				path: `/`,
+			},
+			{
+				name: `Blog`,
+				path: `/blog`,
+			},
+		],
 	},
 	plugins: [
 		`gatsby-plugin-sitemap`,
 		`gatsby-plugin-react-helmet`,
+		{
+			resolve: `gatsby-plugin-sass`,
+			// options: {
+			// 	includePaths: [`src/styles`],
+			// },
+		},
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
