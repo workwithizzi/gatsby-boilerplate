@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Nav } from "./Nav"
@@ -16,7 +17,7 @@ const _GET_TITLE = graphql`
 	}
 `
 
-const Header = () => {
+const Header = ({ withSearch }) => {
 	const { site } = useStaticQuery(_GET_TITLE)
 
 	return (
@@ -37,16 +38,27 @@ const Header = () => {
 			<Nav />
 
 			{/* Search */}
-			<form class="search" role="search">
-				<label>
-					Search
-					<input type="search"/>
-				</label>
-				<button type="submit">Submit</button>
-			</form>
+			{ withSearch &&
+				<form role="search">
+					<label>
+						Search
+						<input type="search"/>
+					</label>
+					<button type="submit">Submit</button>
+				</form>
+			}
+
 		</header>
 	)
 }
 
+
+Header.propTypes = {
+	withSearch: PropTypes.bool,
+}
+
+Header.defaultProps = {
+	withSearch: true,
+}
 
 export { Header }
