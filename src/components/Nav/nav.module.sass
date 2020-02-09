@@ -1,0 +1,82 @@
+
+
+// @media screen and (min-width: 600px)
+// 	nav
+// 		background: seagreen
+
+
+// ------------------------------------------------------------------
+// Primary Navigation Component
+//
+// Styling for the responisve nav, toggle button, and logo
+// ------------------------------------------------------------------
+
+
+// ------------------------------------
+// Nav-specific Utilities
+// ------------------------------------
+
+// Breakpoint Mixin Alias
+=_bp
+	@media screen and (min-width: 800px)
+		@content
+
+
+// Navigation Height
+$_nav-height: r(50px)
+
+$cl_nav-bg: #333
+
+$base_animation: 400ms ease-in-out all
+
+$cl_nav-text: #ddd
+
+// ------------------------------------
+// Responsive Nav Stuff
+// ------------------------------------
+
+// Show button below breakpoint
+.toggleButtonContainer
+	display: inline
+	+_bp
+		display: none
+
+// Hide menu below breakpoint
+.nav ul
+	display: none
+	+_bp
+		display: inline
+
+// Show menu when button is clicked
+.navIsActive ul
+	display: inline
+
+
+// ------------------------------------
+// Navigation Styling
+// ------------------------------------
+
+.nav
+	height: $_nav-height
+	background: $cl_nav-bg
+
+	ul > li
+		display: inline-block
+
+	ul a
+		// +h(padding, r(10px))
+		padding-left: 10px
+		padding-right: 10px
+		display: block
+		line-height: $_nav-height
+		text-decoration: none
+		color: #ddd // this is TEMPORARY. just to see the nav items on the white bg
+		transition: $base_animation
+		&:hover
+			background: darken($cl_nav-bg, 5%)
+
+.toggleButton
+	padding: 0 r(18px)
+	line-height: $_nav-height
+	color: $cl_nav-text
+	background: transparent

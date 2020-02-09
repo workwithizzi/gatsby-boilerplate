@@ -10,6 +10,7 @@ const IndexPage = () => (
 
 		<h2>Secondary Page or Article Heading</h2>
 		<p>Last year’s General Motors Co. ignition-switch fiasco helped push the total number of recalls in the U.S. to 64 million cars, more than double the previous record. Then Honda Motor Co. paid $70 million for failing to properly report death, injury and warranty data to U.S. regulators.</p>
+
 	</Layout>
 )
 

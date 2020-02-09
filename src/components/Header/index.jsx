@@ -2,9 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import { Nav } from "./Nav"
-import { InlineLogo } from "./svgs/InlineLogo"
-// import logo from "../images/logo.svg"
+import { Nav } from "../Nav"
+import { InlineLogo } from "../svgs/InlineLogo"
 
 
 const _GET_TITLE = graphql`
