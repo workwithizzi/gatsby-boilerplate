@@ -2,10 +2,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { Header } from "./Header"
-import { Sidebar } from "./Sidebar"
-import { Footer } from "./Footer"
-import { SEO } from "./Seo"
+import { Header } from "../Header"
+import { Sidebar } from "../Sidebar"
+import { Footer } from "../Footer"
+import { SEO } from "../Seo"
+
+import skipStyles from "./skiplink.module.sass"
 
 
 const Layout = ({ title, children, withSidebar }) => {
@@ -13,7 +15,8 @@ const Layout = ({ title, children, withSidebar }) => {
 		<>
 			<SEO title={title} />
 			{/* Accessibility Skiplink */}
-			<a href="#scroll-main">
+
+			<a className={skipStyles.container} href="#scroll-main">
 					Jump to main content.
 			</a>
 
