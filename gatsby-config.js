@@ -17,6 +17,24 @@ module.exports = {
 				name: `Blog`,
 				path: `/blog`,
 			},
+			{
+				name: `Sidebar Page`,
+				path: `/sidebar-page`,
+			},
+			{
+				name: `Dropdown`,
+				path: ``,
+				childMenuLinks: [
+					{
+						name: `Link One`,
+						path: `/`,
+					},
+					{
+						name: `Link Two`,
+						path: `/`,
+					},
+				],
+			},
 		],
 	},
 	plugins: [
