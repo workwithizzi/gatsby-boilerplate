@@ -23,7 +23,7 @@ module.exports = {
 			},
 			{
 				name: `Dropdown`,
-				path: ``,
+				path: `/`,
 				childMenuLinks: [
 					{
 						name: `Link One`,
