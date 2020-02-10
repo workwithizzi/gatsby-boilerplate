@@ -29,7 +29,7 @@ const CloseIcon = ({
 }
 
 
-CloseIcon.PropTypes = {
+CloseIcon.propTypes = {
 	ariaHidden: PropTypes.string,
 	className : PropTypes.string,
 	desc      : PropTypes.string,

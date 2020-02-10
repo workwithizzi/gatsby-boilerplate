@@ -27,7 +27,7 @@ const SVGTemplate = ({
 }
 
 
-SVGTemplate.PropTypes = {
+SVGTemplate.propTypes = {
 	ariaHidden: PropTypes.string,
 	className : PropTypes.string,
 	desc      : PropTypes.string,

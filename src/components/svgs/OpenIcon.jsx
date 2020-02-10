@@ -29,7 +29,7 @@ const OpenIcon = ({
 }
 
 
-OpenIcon.PropTypes = {
+OpenIcon.propTypes = {
 	ariaHidden: PropTypes.string,
 	className : PropTypes.string,
 	desc      : PropTypes.string,
