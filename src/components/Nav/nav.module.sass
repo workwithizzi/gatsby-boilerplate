@@ -35,20 +35,20 @@ $cl_nav-text: #ddd
 // Responsive Nav Stuff
 // ------------------------------------
 
-// Show button below breakpoint
-.toggleButtonContainer
+// Show button on small screens
+.buttonToggle
 	display: inline
 	+_bp
 		display: none
 
-// Hide menu below breakpoint
-.nav ul
+// Hide menu on small screens
+.mainMenu
 	display: none
 	+_bp
 		display: inline
 
 // Show menu when button is clicked
-.navIsActive ul
+.isActive
 	display: inline
 
 
@@ -60,23 +60,16 @@ $cl_nav-text: #ddd
 	height: $_nav-height
 	background: $cl_nav-bg
 
-	ul > li
-		display: inline-block
+.mainMenu > li
+	display: inline-block
 
-	ul a
-		// +h(padding, r(10px))
-		padding-left: 10px
-		padding-right: 10px
-		display: block
-		line-height: $_nav-height
-		text-decoration: none
-		color: #ddd // this is TEMPORARY. just to see the nav items on the white bg
-		transition: $base_animation
-		&:hover
-			background: darken($cl_nav-bg, 5%)
-
-.toggleButton
-	padding: 0 r(18px)
+.mainMenu a
+	padding-left: 10px
+	padding-right: 10px
+	display: block
 	line-height: $_nav-height
-	color: $cl_nav-text
-	background: transparent
+	text-decoration: none
+	color: #ddd // this is TEMPORARY. just to see the nav items on the white bg
+	transition: $base_animation
+	&:hover
+		background: darken($cl_nav-bg, 5%)
