@@ -4,7 +4,6 @@ import { OpenIcon } from "../svgs/OpenIcon"
 import { CloseIcon } from "../svgs/CloseIcon"
 import { MainMenu } from "./MainMenu"
 
-// import "./nav.sass"
 import styles from "./nav.module.sass"
 
 

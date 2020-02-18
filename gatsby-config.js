@@ -42,9 +42,13 @@ module.exports = {
 		`gatsby-plugin-react-helmet`,
 		{
 			resolve: `gatsby-plugin-sass`,
-			// options: {
-			// 	includePaths: [`src/styles`],
-			// },
+			options: {
+				includePaths: [
+					`node_modules/luscious/core`,
+					`node_modules/modularscale-sass`,
+					`src/styles`,
+				],
+			},
 		},
 		{
 			resolve: `gatsby-source-filesystem`,

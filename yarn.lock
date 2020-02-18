@@ -8722,6 +8722,13 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+luscious@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/luscious/-/luscious-0.9.0.tgz#b9145bc54f2bd825973e06ce5933a84de7d2a76b"
+  integrity sha512-sblFQVx6TJUb37aBg6v5zZqsxSyJ+uYQttnL2WWTbLXvqEwhH1VK6VqyPyqjLovcUQ9psnml+3T1fgN4mT8rOw==
+  dependencies:
+    modularscale-sass "^3.0.8"
+
 make-dir@^1.0.0, make-dir@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
@@ -9170,6 +9177,11 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdir
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+modularscale-sass@^3.0.8:
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/modularscale-sass/-/modularscale-sass-3.0.10.tgz#3a596b090360129dd2375bee81b9318085cb47b3"
+  integrity sha512-ppbMfcXC+ESpqk1s8BfqsuY85DTAJdoPLxrYFohAUjg3r9eh2CBm2Wn7+JAh26DbRpAHynRt3a8ma2FOfk7JGA==
 
 moment@^2.24.0:
   version "2.24.0"

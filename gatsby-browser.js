@@ -3,3 +3,5 @@
 // You can delete this file if you're not using it
 
 // You could import a global stylesheet or script here
+
+import(`./src/styles/main.sass`)

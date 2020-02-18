@@ -42,7 +42,7 @@ const MainMenu = ({className, id}) => {
 				!link.childMenuLinks ? (
 					<_Item name={link.name} path={link.path} />
 				) : (
-					<ul key={link.name}>
+					<ul key={link.name} className={styles.subnav}>
 						{link.name}
 						{link.childMenuLinks.map(link => (
 							<_Item name={link.name} path={link.path} />

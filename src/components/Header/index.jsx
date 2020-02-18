@@ -5,6 +5,8 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import { Nav } from "../Nav"
 import { InlineLogo } from "../svgs/InlineLogo"
 
+import styles from "./header.module.sass"
+
 
 const _GET_TITLE = graphql`
 	query {
@@ -23,15 +25,16 @@ const Header = ({ withSearch }) => {
 		<header>
 			{/* Site Logo */}
 			<Link to="/">
-				{site.siteMetadata.title}
+				<span className="u_sr_only">{site.siteMetadata.title}</span>
 				{/* Div around logo is temporary */}
-				<div style={{height: `100px`, width: `100px`, color:`#000`}}>
-					<InlineLogo
-						fillColor="orange"
-						title="SpaceCat"
-						desc="This is a cat wit an astronaut helmet"
-					/>
-				</div>
+				<InlineLogo
+					fillColor="orange"
+					title="SpaceCat"
+					desc="This is a cat wit an astronaut helmet"
+					className={styles.logo}
+				/>
+				{/* <div style={{height: `100px`, width: `100px`, color:`#000`}}>
+				</div> */}
 			</Link>
 
 			<Nav />
