@@ -6,7 +6,7 @@
 import React, { Component } from "react"
 import { graphql } from "gatsby"
 
-import { Layout } from "./Layout"
+import { Layout } from "../components/Layout"
 
 
 export default class PostTemplate extends Component {
