@@ -9,22 +9,6 @@ import { graphql } from "gatsby"
 import { Layout } from "../components/Layout"
 
 
-export default class PostTemplate extends Component {
-	render() {
-		const { markdownRemark } = this.props.data
-		// const { location } = this.props
-
-		return (
-			<Layout title="test">
-				<h1>{markdownRemark.frontmatter.title}</h1>
-				<div dangerouslySetInnerHTML={{
-					__html: markdownRemark.html,
-				}} />
-			</Layout>
-		)
-	}
-}
-
 // Get this data from the '.md' file
 export const query = graphql`
 	query PostListQuery($slug: String!) {
@@ -42,3 +26,20 @@ export const query = graphql`
 		}
 	}
 `
+
+
+export default class PostTemplate extends Component {
+	render() {
+		const { markdownRemark } = this.props.data
+		// const { location } = this.props
+
+		return (
+			<Layout title="test">
+				<h1>{markdownRemark.frontmatter.title}</h1>
+				<div dangerouslySetInnerHTML={{
+					__html: markdownRemark.html,
+				}} />
+			</Layout>
+		)
+	}
+}

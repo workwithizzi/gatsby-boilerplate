@@ -53,18 +53,25 @@ module.exports = {
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
-				name: `posts`,
-				path: `${__dirname}/src/posts/`,
-				ignore: [`**/.*`], // ignore files starting with a dot
+				name: `images`,
+				path: `${__dirname}/src/images`,
 			},
 		},
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
-				name: `images`,
-				path: `${__dirname}/src/images`,
+				name: `pages`,
+				path: `${__dirname}/src/pages/`,
 			},
 		},
+		// {
+		// 	resolve: `gatsby-source-filesystem`,
+		// 	options: {
+		// 		name: `posts`,
+		// 		path: `${__dirname}/src/posts/`,
+		// 		ignore: [`**/.*`], // ignore files starting with a dot
+		// 	},
+		// },
 		{
 			// Used for markdown
 			resolve: `gatsby-transformer-remark`,

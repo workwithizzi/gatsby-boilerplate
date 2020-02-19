@@ -17,17 +17,25 @@ exports.createPages = ({ graphql, actions }) => {
 						node {
 							frontmatter {
 								slug
+								template
 							}
 						}
 					}
 				}
 			}
-		`).then(results => {
+		`).then(result => {
+			if (result.errors) {
+				result.errors.forEach(e => console.error(e.toString()))
+				return Promise.reject(result.errors)
+			}
 
-			results.data.allMarkdownRemark.edges.forEach(({node}) => {
+			result.data.allMarkdownRemark.edges.forEach(({node}) => {
 				createPage({
 					path: `/posts${node.frontmatter.slug}`,
-					component: path.resolve(`./src/templates/post.jsx`),
+					// component: path.resolve(`./src/templates/post.jsx`),
+					component: path.resolve(
+						`./src/templates/${node.frontmatter.template}.jsx`
+					),
 					context: {
 						slug: node.frontmatter.slug,
 					},
