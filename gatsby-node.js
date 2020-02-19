@@ -2,6 +2,7 @@
 // See: https://www.gatsbyjs.org/docs/node-apis/
 
 const path = require(`path`)
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
 
 // Create blog posts based on .md files in 'src/posts'
@@ -15,6 +16,9 @@ exports.createPages = ({ graphql, actions }) => {
 				allMarkdownRemark {
 					edges {
 						node {
+							fields {
+								slug
+							}
 							frontmatter {
 								slug
 								template
@@ -30,9 +34,17 @@ exports.createPages = ({ graphql, actions }) => {
 			}
 
 			result.data.allMarkdownRemark.edges.forEach(({node}) => {
+				let fullSlug = node.fields.slug
+				if (node.frontmatter.slug) {
+					fullSlug = node.frontmatter.slug
+
+					if (node.frontmatter.template === `post` ) {
+						fullSlug = `/posts${node.frontmatter.slug}`
+					}
+				}
+
 				createPage({
-					path: `/posts${node.frontmatter.slug}`,
-					// component: path.resolve(`./src/templates/post.jsx`),
+					path: fullSlug,
 					component: path.resolve(
 						`./src/templates/${node.frontmatter.template}.jsx`
 					),
@@ -45,4 +57,17 @@ exports.createPages = ({ graphql, actions }) => {
 
 		})
 	})
+}
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+	const { createNodeField } = actions
+
+	if (node.internal.type === `MarkdownRemark`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value,
+		})
+	}
 }
