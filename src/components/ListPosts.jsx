@@ -9,10 +9,11 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 
 const _GET_POSTS = graphql`
 	query {
-		allMarkdownRemark(limit: 5, sort: {
-			order: DESC,
-			fields: [frontmatter___date]
-		}) {
+		allMarkdownRemark(
+			limit: 5,
+			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { template: { eq: "post" } } }
+		) {
 			edges {
 				node {
 					frontmatter {

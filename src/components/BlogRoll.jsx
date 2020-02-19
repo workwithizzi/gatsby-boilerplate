@@ -1,15 +1,14 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
-import { Layout } from "../components/Layout"
-
 
 const _GET_POSTS = graphql`
 	query BlogPostIndex {
-		allMarkdownRemark(limit: 5, sort: {
-			order: DESC,
-			fields: [frontmatter___date]
-		}) {
+		allMarkdownRemark(
+			limit: 5,
+			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { template: { eq: "post" } } }
+		) {
 			edges {
 				node {
 					excerpt
@@ -17,6 +16,7 @@ const _GET_POSTS = graphql`
 						date(formatString: "MMMM DD, YYYY")
 						title
 						slug
+						template
 					}
 				}
 			}
@@ -25,12 +25,11 @@ const _GET_POSTS = graphql`
 `
 
 
-const BlogPage = () => {
+const BlogRoll = () => {
 	const data = useStaticQuery(_GET_POSTS)
 
 	return (
-		<Layout title="Blog" withSidebar>
-
+		<>
 			{data.allMarkdownRemark.edges.map(edge => (
 				<article key={edge.node.frontmatter.slug}>
 					<Link to={`/posts${edge.node.frontmatter.slug}`}>
@@ -41,9 +40,9 @@ const BlogPage = () => {
 					<Link to={`/posts${edge.node.frontmatter.slug}`}>Read More</Link>
 				</article>
 			))}
-		</Layout>
+		</>
 	)
 }
 
 
-export default BlogPage
+export { BlogRoll }
