@@ -7,8 +7,8 @@ import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 
-const _GET_POSTS = graphql`
-	query {
+const _queryPosts = graphql`
+	query{
 		allMarkdownRemark(
 			limit: 5,
 			sort: { order: DESC, fields: [frontmatter___date] }
@@ -16,6 +16,7 @@ const _GET_POSTS = graphql`
 		) {
 			edges {
 				node {
+					excerpt
 					frontmatter {
 						title
 						slug
@@ -27,11 +28,12 @@ const _GET_POSTS = graphql`
 `
 
 
-const ListPosts = () => {
-	const data = useStaticQuery(_GET_POSTS)
+const RecentPosts = () => {
+	const data = useStaticQuery(_queryPosts)
 
 	return (
 		<>
+			<pre>RecentPosts Component</pre>
 			<ul>
 				{data.allMarkdownRemark.edges.map(edge => (
 					<li key={edge.node.frontmatter.slug}>
@@ -46,4 +48,4 @@ const ListPosts = () => {
 }
 
 
-export { ListPosts }
+export { RecentPosts }

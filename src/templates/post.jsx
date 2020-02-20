@@ -6,11 +6,11 @@
 import React, { Component } from "react"
 import { graphql } from "gatsby"
 
-import { Layout } from "../components/Layout"
+import { Layout } from "../components/Layout/Layout"
 
 
 // Get this data from the '.md' file
-export const query = graphql`
+export const _queryPage = graphql`
 	query PostListQuery($slug: String!) {
 		markdownRemark(frontmatter: {
 			slug: {
@@ -35,6 +35,7 @@ export default class PostTemplate extends Component {
 
 		return (
 			<Layout title="test">
+				<pre>Post Template</pre>
 				<h1>{markdownRemark.frontmatter.title}</h1>
 				<div dangerouslySetInnerHTML={{
 					__html: markdownRemark.html,

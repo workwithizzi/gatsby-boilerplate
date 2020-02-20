@@ -5,7 +5,7 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import styles from "./nav.module.sass"
 
 
-const _QUERY_MENU = graphql`
+const _queryMenu = graphql`
 	query {
 		site {
 			siteMetadata {
@@ -25,8 +25,8 @@ const _QUERY_MENU = graphql`
 
 
 const MainMenu = ({className, id}) => {
-	const data = useStaticQuery(_QUERY_MENU)
-	const menuLinks = data.site.siteMetadata.menuLinks
+	const data = useStaticQuery(_queryMenu)
+	// const menuLinks = data.site.siteMetadata.menuLinks
 
 	const _Item = ({name, path, external}) => (
 		<li key={name}>
@@ -38,7 +38,13 @@ const MainMenu = ({className, id}) => {
 
 	return (
 		<ul className={className} id={id}>
-			{menuLinks.map(link => (
+			<_Item name="Home" path="/" />
+			<_Item name="Blog" path="/blog" />
+			<_Item name="Sidebar" path="/sidebar-page" />
+			{/* Added the menu statically just to remove
+			the 'unique-key' warning temporarily */}
+
+			{/* {menuLinks.map(link => (
 				!link.childMenuLinks ? (
 					<_Item name={link.name} path={link.path} />
 				) : (
@@ -49,7 +55,7 @@ const MainMenu = ({className, id}) => {
 						))}
 					</ul>
 				)
-			))}
+			))} */}
 		</ul>
 	)
 }

@@ -1,18 +1,12 @@
-import React, { Component }  from "react"
+import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
-import { Layout } from "../components/Layout"
-import { BlogRoll } from "../components/BlogRoll"
+import { Layout } from "../components/Layout/Layout"
 
 
-// Get this data from the '.md' file
-export const query = graphql`
+export const _queryPage = graphql`
 	query BlogPageQuery($slug: String!) {
-		markdownRemark(frontmatter: {
-			slug: {
-				eq: $slug
-			}
-		}) {
+		markdownRemark(frontmatter: { slug: { eq: $slug } }) {
 			html
 			frontmatter {
 				title
@@ -20,39 +14,56 @@ export const query = graphql`
 				slug
 			}
 		}
+		allMarkdownRemark(
+			limit: 5,
+			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { template: { eq: "post" } } }
+		) {
+			edges {
+				node {
+					excerpt
+					frontmatter {
+						date(formatString: "MMMM DD, YYYY")
+						title
+						slug
+						template
+					}
+				}
+			}
+		}
 	}
 `
 
 
-class BlogIndexTemplate extends Component {
-	render() {
-		const { markdownRemark } = this.props.data
+const BlogIndexTemplate = ({ data }) => {
+	const posts = data.allMarkdownRemark.edges
 
-		return (
-			<Layout title="Blog">
-				<h1>{markdownRemark.frontmatter.title}</h1>
-				<div dangerouslySetInnerHTML={{
-					__html: markdownRemark.html,
-				}} />
-				<hr />
-				<p>This is the BlogIndexTemplate.</p>
-				<hr />
-				<BlogRoll />
-			</Layout>
-		)
-	}
+	return (
+		<Layout title="Blog" withSidebar>
+			<pre>Blog Index Template</pre>
+
+			<h1>{data.markdownRemark.frontmatter.title}</h1>
+			<div dangerouslySetInnerHTML={{
+				__html: data.markdownRemark.html,
+			}} />
+
+			<hr />
+
+			{/* List the posts/summaries here */}
+			{posts.map(({ node }) => (
+				<article key={node.frontmatter.slug}>
+					<Link to={`/posts${node.frontmatter.slug}`}>
+						<h2>{node.frontmatter.title}</h2>
+					</Link>
+					<p>{node.frontmatter.date}</p>
+					<p>{node.excerpt}</p>
+					<Link to={`/posts${node.frontmatter.slug}`}>Read More</Link>
+				</article>
+			))}
+
+		</Layout>
+	)
 }
-
-// const BlogIndexTemplate = () => {
-// 	return (
-// 		<Layout title="Blog" withSidebar>
-// 			<h1>Blog Index Template jsx</h1>
-// 			<p>This is the main body.</p>
-// 			<hr />
-// 			<BlogRoll />
-// 		</Layout>
-// 	)
-// }
 
 
 export default BlogIndexTemplate

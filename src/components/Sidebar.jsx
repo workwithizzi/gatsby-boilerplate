@@ -1,7 +1,6 @@
 import React from "react"
-import { Link } from "gatsby"
 
-import { ListPosts } from "./ListPosts"
+import { RecentPosts } from "./RecentPosts"
 
 
 const Sidebar = () => {
@@ -9,7 +8,7 @@ const Sidebar = () => {
 		<aside>
 			<section>
 				<h2>Recent Posts</h2>
-				<ListPosts />
+				<RecentPosts />
 			</section>
 			<section>
 				<h2>External Links</h2>

@@ -2,13 +2,13 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import { Nav } from "../Nav"
+import { Nav } from "../Nav/Nav"
 import { InlineLogo } from "../svgs/InlineLogo"
 
 import styles from "./header.module.sass"
 
 
-const _GET_TITLE = graphql`
+const _queryMeta = graphql`
 	query {
 		site {
 			siteMetadata {
@@ -19,7 +19,7 @@ const _GET_TITLE = graphql`
 `
 
 const Header = ({ withSearch }) => {
-	const { site } = useStaticQuery(_GET_TITLE)
+	const { site } = useStaticQuery(_queryMeta)
 
 	return (
 		<header>
