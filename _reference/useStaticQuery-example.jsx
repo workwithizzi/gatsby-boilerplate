@@ -1,13 +1,18 @@
+// Not using this component right now,
+// just leaving it here as an example
+// of how to use 'useStaticQuery'
+
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
 
-const _GET_POSTS = graphql`
-	query BlogPostListing {
-		allMarkdownRemark(limit: 5, sort: {
-			order: DESC,
-			fields: [frontmatter___date]
-		}) {
+const _queryPosts = graphql`
+	query{
+		allMarkdownRemark(
+			limit: 5,
+			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { template: { eq: "post" } } }
+		) {
 			edges {
 				node {
 					excerpt
@@ -15,6 +20,7 @@ const _GET_POSTS = graphql`
 						date(formatString: "MMMM DD, YYYY")
 						title
 						slug
+						template
 					}
 				}
 			}
@@ -22,9 +28,8 @@ const _GET_POSTS = graphql`
 	}
 `
 
-
 const BlogRoll = () => {
-	const data = useStaticQuery(_GET_POSTS)
+	const data = useStaticQuery(_queryPosts)
 
 	return (
 		<>

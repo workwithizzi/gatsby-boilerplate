@@ -1,9 +1,44 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
+
+
+// const _queryMenu = graphql`
+// 	query {
+// 		allMarkdownRemark {
+// 			edges {
+// 				node {
+// 					excerpt
+// 					fields {
+// 						slug
+// 					}
+// 					frontmatter {
+// 						date(formatString: "MMMM DD, YYYY")
+// 						title
+// 						template
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// `
+
 
 const Footer = () => {
+	// const data = useStaticQuery(_queryMenu)
+	// const pages = data.allMarkdownRemark.edges
+
 	return (
 		<footer>
+			<section>
+				<h3>Dynamic Pages</h3>
+				<ul>
+					{/* { _listPages() } */}
+
+					{/* { pages.map(({ node }) => (
+						<li><a href={node.fields.slug}>{node.frontmatter.title}</a></li>
+					))} */}
+				</ul>
+			</section>
 			<section>
 				<h2>Footer Nav Title</h2>
 				<ul>

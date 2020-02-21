@@ -2,7 +2,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { Header } from "../Header"
+import { Header } from "../Header/Header"
 import { Sidebar } from "../Sidebar"
 import { Footer } from "../Footer"
 import { SEO } from "../Seo"
