@@ -1,7 +1,4 @@
-/* eslint-disable react/prefer-stateless-function */
-// Blog post page-template:
-// Create Pages using 'gatsby-node.js' when '.md'
-// files are added to the '/src/posts/' directory
+// Blog (single) post page-template:
 
 import React from "react"
 import { graphql } from "gatsby"
@@ -22,7 +19,7 @@ export const _queryPage = graphql`
 `
 
 
-const PostTemplate = ({ data }) => {
+const PostPageTemplate = ({ data }) => {
 	const page = data.markdownRemark
 	return (
 		<Layout title={page.frontmatter.title}>
@@ -38,4 +35,4 @@ const PostTemplate = ({ data }) => {
 }
 
 
-export default PostTemplate
+export default PostPageTemplate

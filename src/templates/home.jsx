@@ -1,3 +1,6 @@
+// Template used ONLY for the home page. Content for this
+// page comes from 'content/home.md'
+
 import React from "react"
 import { graphql } from "gatsby"
 
@@ -5,7 +8,7 @@ import { Layout } from "../components/Layout/Layout"
 
 
 export const _queryPage = graphql`
-	query HomePageQuery($slug: String!) {
+	query($slug: String!) {
 		markdownRemark(fields: { slug: { eq: $slug } }) {
 			frontmatter {
 				title
@@ -17,7 +20,7 @@ export const _queryPage = graphql`
 `
 
 
-const IndexPage = ({ data }) => {
+const HomePageTemplate = ({ data }) => {
 	const page = data.markdownRemark
 
 	return (
@@ -35,4 +38,4 @@ const IndexPage = ({ data }) => {
 	)
 }
 
-export default IndexPage
+export default HomePageTemplate

@@ -1,4 +1,4 @@
-// Template used for default/basic pages.
+// Template used for the Contact-Us page.
 
 import React from "react"
 import { graphql } from "gatsby"
@@ -20,13 +20,13 @@ export const _queryPage = graphql`
 `
 
 
-const DefaultPageTemplate = ({ data }) => {
+const ContactPageTemplate = ({ data }) => {
 	const page = data.markdownRemark
 	const sidebar = page.frontmatter.sidebar
 
 	return (
 		<Layout title={page.frontmatter.title} withSidebar={sidebar}>
-			<pre>Default Page Template</pre>
+			<pre>Contact Page Template</pre>
 			<hr />
 
 			<h1>{page.frontmatter.title}</h1>
@@ -39,4 +39,4 @@ const DefaultPageTemplate = ({ data }) => {
 	)
 }
 
-export default DefaultPageTemplate
+export default ContactPageTemplate

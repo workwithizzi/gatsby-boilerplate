@@ -1,8 +1,8 @@
 // Implement Gatsby's Node APIs in this file.
 // See: https://www.gatsbyjs.org/docs/node-apis/
+// TODO: Add kabob function to make sure slugs and paths are written properly.
 
 const path = require(`path`)
-// const { createFilePath } = require(`gatsby-source-filesystem`)
 
 
 module.exports.onCreateNode = ({ node, actions }) => {

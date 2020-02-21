@@ -1,3 +1,5 @@
+// Template used for the blog-index (blogroll) page.
+
 import React from "react"
 import { Link, graphql } from "gatsby"
 

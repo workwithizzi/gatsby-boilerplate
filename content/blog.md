@@ -6,4 +6,4 @@ sidebar: true
 ---
 
 This is the main blog-index page body.
-This content is added throught he `pages/blog.md` file.
+This content is added through the `content/blog.md` file.
