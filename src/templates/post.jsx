@@ -3,44 +3,39 @@
 // Create Pages using 'gatsby-node.js' when '.md'
 // files are added to the '/src/posts/' directory
 
-import React, { Component } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 
 import { Layout } from "../components/Layout/Layout"
 
 
-// Get this data from the '.md' file
 export const _queryPage = graphql`
-	query PostListQuery($slug: String!) {
-		markdownRemark(frontmatter: {
-			slug: {
-				eq: $slug
-			}
-		}) {
-			html
+	query($slug: String!) {
+		markdownRemark(fields: { slug: { eq: $slug } }) {
 			frontmatter {
 				title
 				date
-				slug
 			}
+			html
 		}
 	}
 `
 
 
-export default class PostTemplate extends Component {
-	render() {
-		const { markdownRemark } = this.props.data
-		// const { location } = this.props
-
-		return (
-			<Layout title="test">
-				<pre>Post Template</pre>
-				<h1>{markdownRemark.frontmatter.title}</h1>
-				<div dangerouslySetInnerHTML={{
-					__html: markdownRemark.html,
-				}} />
-			</Layout>
-		)
-	}
+const PostTemplate = ({ data }) => {
+	const page = data.markdownRemark
+	return (
+		<Layout title={page.frontmatter.title}>
+			<pre>Post Template</pre>
+			<hr />
+			<h1>{page.frontmatter.title}</h1>
+			<p>{page.frontmatter.date}</p>
+			<div dangerouslySetInnerHTML={{
+				__html: page.html,
+			}} />
+		</Layout>
+	)
 }
+
+
+export default PostTemplate

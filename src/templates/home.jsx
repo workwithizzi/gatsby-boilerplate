@@ -6,32 +6,29 @@ import { Layout } from "../components/Layout/Layout"
 
 export const _queryPage = graphql`
 	query HomePageQuery($slug: String!) {
-		markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-			html
+		markdownRemark(fields: { slug: { eq: $slug } }) {
 			frontmatter {
 				title
 				date
-				slug
 			}
-		}
-		site {
-			siteMetadata {
-				title
-			}
+			html
 		}
 	}
 `
 
+
 const IndexPage = ({ data }) => {
-	const pageTitle = data.markdownRemark.frontmatter.title
+	const page = data.markdownRemark
+
 	return (
-		<Layout title={pageTitle}>
+		<Layout title={page.frontmatter.title}>
 			<pre>Home Page Template</pre>
+			<hr />
 
-			<h1>{pageTitle}</h1>
-
+			<h1>{page.frontmatter.title}</h1>
+			<p>{page.frontmatter.date}</p>
 			<div dangerouslySetInnerHTML={{
-				__html: data.markdownRemark.html,
+				__html: page.html,
 			}} />
 
 		</Layout>

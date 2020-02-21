@@ -2,72 +2,75 @@
 // See: https://www.gatsbyjs.org/docs/node-apis/
 
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+// const { createFilePath } = require(`gatsby-source-filesystem`)
 
 
-// Create blog posts based on .md files in 'src/posts'
-exports.createPages = ({ graphql, actions }) => {
+module.exports.onCreateNode = ({ node, actions }) => {
+	const { createNodeField } = actions
+
+	if (node.internal.type === `MarkdownRemark`) {
+
+		let slug = path.basename(node.fileAbsolutePath, `.md`)
+		let fullSlug = `/${slug}`
+
+		// Home Page
+		if (node.frontmatter.template === `home`) {
+			slug = `/`
+			fullSlug = `/`
+		}
+
+		// Blog Posts
+		if (node.frontmatter.template === `post`) {
+			fullSlug = `/posts${fullSlug}`
+		}
+
+		// Do the things
+		createNodeField({
+			node,
+			name: `slug`,
+			value: slug,
+		})
+		createNodeField({
+			node,
+			name: `fullSlug`,
+			value: fullSlug,
+		})
+
+	}
+}
+
+
+
+module.exports.createPages = async({ graphql, actions }) => {
 	const { createPage } = actions
-
-	return new Promise((resolve, reject) => {
-
-		graphql(`
-			{
-				allMarkdownRemark {
-					edges {
-						node {
-							fields {
-								slug
-							}
-							frontmatter {
-								slug
-								template
-							}
+	const res = await graphql(`
+		query {
+			allMarkdownRemark {
+				edges {
+					node {
+						fields {
+							slug
+							fullSlug
+						}
+						frontmatter {
+							template
 						}
 					}
 				}
 			}
-		`).then(result => {
-			if (result.errors) {
-				result.errors.forEach(e => console.error(e.toString()))
-				return Promise.reject(result.errors)
-			}
+		}
+	`)
 
-			result.data.allMarkdownRemark.edges.forEach(({node}) => {
-				let fullSlug = node.fields.slug
-				if (node.frontmatter.slug) {
-					fullSlug = node.frontmatter.slug
+	res.data.allMarkdownRemark.edges.forEach((edge) => {
+		const template = edge.node.frontmatter.template
 
-					if (node.frontmatter.template === `post` ) {
-						fullSlug = `/posts${node.frontmatter.slug}`
-					}
-				}
-
-				createPage({
-					path: fullSlug,
-					component: path.resolve(
-						`./src/templates/${node.frontmatter.template}.jsx`
-					),
-					context: {
-						slug: node.frontmatter.slug,
-					},
-				})
-			})
-			resolve()
-
+		createPage({
+			component: path.resolve(`./src/templates/${template}.jsx`),
+			path: edge.node.fields.fullSlug,
+			context: {
+				slug: edge.node.fields.slug,
+				fullSlug: edge.node.fields.fullSlug,
+			},
 		})
 	})
-}
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-	const { createNodeField } = actions
-
-	if (node.internal.type === `MarkdownRemark`) {
-		const value = createFilePath({ node, getNode })
-		createNodeField({
-			name: `slug`,
-			node,
-			value,
-		})
-	}
 }

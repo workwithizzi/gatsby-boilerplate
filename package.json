@@ -17,6 +17,7 @@
 	},
 	"scripts": {
 		"dev": "gatsby develop",
+		"devp": "env-cmd -f .env.development gatsby develop",
 		"build": "gatsby build",
 		"start": "npm run develop",
 		"serve": "gatsby serve",
@@ -46,6 +47,7 @@
 	},
 	"devDependencies": {
 		"@workwithizzi/eslint-config-react": "^0.0.2",
+		"env-cmd": "^10.1.0",
 		"luscious": "^0.9.0"
 	}
 }

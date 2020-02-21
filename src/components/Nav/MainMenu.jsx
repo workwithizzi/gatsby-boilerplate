@@ -40,7 +40,8 @@ const MainMenu = ({className, id}) => {
 		<ul className={className} id={id}>
 			<_Item name="Home" path="/" />
 			<_Item name="Blog" path="/blog" />
-			<_Item name="Sidebar" path="/sidebar-page" />
+			<_Item name="Sidebar" path="/default-sidebar" />
+			<_Item name="No Sidebar" path="/default-no-sidebar" />
 			{/* Added the menu statically just to remove
 			the 'unique-key' warning temporarily */}
 

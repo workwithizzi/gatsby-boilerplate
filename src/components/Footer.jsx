@@ -1,18 +1,19 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
+
 // const _queryMenu = graphql`
 // 	query {
-// 		allMarkdownRemark(
-// 			filter: { frontmatter: { template: { ne: "post" } } }
-// 		) {
+// 		allMarkdownRemark {
 // 			edges {
 // 				node {
 // 					excerpt
+// 					fields {
+// 						slug
+// 					}
 // 					frontmatter {
 // 						date(formatString: "MMMM DD, YYYY")
 // 						title
-// 						slug
 // 						template
 // 					}
 // 				}
@@ -21,39 +22,11 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 // 	}
 // `
 
-const _queryMenu = graphql`
-	query {
-		allMarkdownRemark {
-			edges {
-				node {
-					excerpt
-					frontmatter {
-						date(formatString: "MMMM DD, YYYY")
-						title
-						slug
-						template
-					}
-				}
-			}
-		}
-	}
-`
-// if (files.node.frontmatter.template !== `post`) {
-// const _listPages = () => {
-// 	const data = useStaticQuery(_queryMenu)
-// 	const files = data.allMarkdownRemark.edges
-// 	{ files.map(({ node }) => (
-// 		{if (node.frontmatter.template !== `post`) {
-// 			<li><a href={node.frontmatter.slug}>{node.frontmatter.title}</a></li>
-
-// 	))}
-// }
 
 const Footer = () => {
-	const data = useStaticQuery(_queryMenu)
-	const pages = data.allMarkdownRemark.edges
+	// const data = useStaticQuery(_queryMenu)
+	// const pages = data.allMarkdownRemark.edges
 
-	console.log(data)
 	return (
 		<footer>
 			<section>
@@ -62,7 +35,7 @@ const Footer = () => {
 					{/* { _listPages() } */}
 
 					{/* { pages.map(({ node }) => (
-						<li><a href={node.frontmatter.slug}>{node.frontmatter.title}</a></li>
+						<li><a href={node.fields.slug}>{node.frontmatter.title}</a></li>
 					))} */}
 				</ul>
 			</section>
