@@ -1,0 +1,53 @@
+mainMenu:
+  - title: "Home"
+    path: "/"
+  - title: "Blog"
+    path: "/blog"
+  - title: "No Sidebar"
+    path: "/default-no-sidebar"
+  - title: "With Sidebar"
+    path: "/default-sidebar"
+  - title: "Contact Us"
+    path: "/contact"
+
+footer:
+  navigation:
+    visible: true
+    heading: Site Navigation
+    links:
+      - title: "Home"
+        path: "/"
+      - title: "Blog"
+        path: "/blog"
+      - title: "No Sidebar"
+        path: "/default-no-sidebar"
+      - title: "With Sidebar"
+        path: "/default-sidebar"
+      - title: "Contact Us"
+        path: "/contact"
+  social:
+    visible: true
+    heading: Get Social
+    links:
+      - title: "Facebook"
+        path: "facebook.com"
+      - title: "Twitter"
+        path: "twitter.com"
+      - title: "Youtube"
+        path: "youtube.com"
+
+sidebar:
+  recentPosts:
+    visible: true
+    heading: Recent Posts
+    count: 5
+  featured:
+    visible: true
+    heading: Social Links
+    links:
+      - title: "Facebook"
+        path: "facebook.com"
+      - title: "Twitter"
+        path: "twitter.com"
+      - title: "Youtube"
+        path: "youtube.com"

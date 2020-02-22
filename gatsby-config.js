@@ -8,34 +8,6 @@ module.exports = {
 		title: `Boilerplate Title`,
 		description: `This is a site description!`,
 		author: `@GrimesClassic`,
-		menuLinks: [
-			{
-				name: `Home`,
-				path: `/`,
-			},
-			{
-				name: `Blog`,
-				path: `/blog`,
-			},
-			{
-				name: `Sidebar Page`,
-				path: `/sidebar-page`,
-			},
-			{
-				name: `Dropdown`,
-				path: `/`,
-				childMenuLinks: [
-					{
-						name: `Link One`,
-						path: `/`,
-					},
-					{
-						name: `Link Two`,
-						path: `/`,
-					},
-				],
-			},
-		],
 	},
 	plugins: [
 		`gatsby-plugin-sitemap`,
@@ -50,6 +22,7 @@ module.exports = {
 				],
 			},
 		},
+		`gatsby-transformer-yaml`,
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
@@ -57,14 +30,16 @@ module.exports = {
 				path: `${__dirname}/src/images`,
 			},
 		},
-		// {
-		// 	resolve: `gatsby-source-filesystem`,
-		// 	options: {
-		// 		name: `pages`,
-		// 		path: `${__dirname}/src/pages/`,
-		// 	},
-		// },
 		{
+			// Yaml files, used for site-settings
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `settings`,
+				path: `${__dirname}/settings/`,
+			},
+		},
+		{
+			// .md files, used for site content
 			resolve: `gatsby-source-filesystem`,
 			options: {
 				name: `content`,
