@@ -83,6 +83,14 @@ module.exports = {
 				icon: siteMeta.manifest.icon, // Relative to the root of the site.
 			},
 		},
+
 		`gatsby-plugin-offline`, // Add this plugin after 'manifest'
+		{
+			resolve: `gatsby-plugin-netlify-cms`,
+			// options: {
+			// 	modulePath: `${__dirname}/src/cms/cms.js`,
+			// },
+		},
+		`gatsby-plugin-netlify`, // make sure to keep it last in the array
 	],
 }

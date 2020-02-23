@@ -1,0 +1,30 @@
+# Specifies how to access the content for your site, including authentication.
+# Full details and code samples: https://t.ly/VZ3Zd
+backend:
+  name: github
+  branch: cms-setup # Branch that the CMS will publish to
+  repo: yisraelgrimes/gatsby-boilerplate
+
+# Allow for drafting, reviewing, approving posts
+# Only available for Github
+# publish_mode: editorial_workflow
+
+# CMS users can upload files to the repo using the Media Gallery to the 'media_folder'.
+media_folder: static/img
+# Those uploaded files can be accessed on the published site at 'public_folder'
+public_folder: /img
+
+# Design Content
+collections:
+  - name: "posts"
+    label: "Posts"
+    description: "Description of the collection. Displayed below the label when viewing a collection. Optional."
+    folder: "content/posts"
+    create: true # Allows users to create new items in a 'folder' collection; defaults to false
+    delete: true # Prevents users from deleting items in a collection; defaults to true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Template", name: "template", widget: "string", default: "post" }
+      - { label: "Publish Date", name: "date", widget: "date" }
+      - { label: "Body", name: "body", widget: "markdown" }
