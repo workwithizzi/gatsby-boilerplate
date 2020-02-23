@@ -1,0 +1,24 @@
+navigation:
+  visible: true
+  heading: Site Navigation
+  links:
+    - title: "Home"
+      path: "/"
+    - title: "Blog"
+      path: "/blog"
+    - title: "No Sidebar"
+      path: "/default-no-sidebar"
+    - title: "With Sidebar"
+      path: "/default-sidebar"
+    - title: "Contact Us"
+      path: "/contact"
+social:
+  visible: true
+  heading: Get Social
+  links:
+    - title: "Facebook"
+      path: "https://www.facebook.com"
+    - title: "Twitter"
+      path: "https://www.twitter.com"
+    - title: "Youtube"
+      path: "https://www.youtube.com"

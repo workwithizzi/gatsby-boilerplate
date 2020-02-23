@@ -18,7 +18,7 @@ const _queryMeta = graphql`
 	}
 `
 
-const Header = ({ withSearch }) => {
+const Header = () => {
 	const { site } = useStaticQuery(_queryMeta)
 
 	return (
@@ -39,28 +39,8 @@ const Header = ({ withSearch }) => {
 
 			<Nav />
 
-			{/* Search */}
-			{ withSearch &&
-				<form role="search">
-					<label>
-						Search
-						<input type="search"/>
-					</label>
-					<button type="submit">Submit</button>
-				</form>
-			}
-
 		</header>
 	)
-}
-
-
-Header.propTypes = {
-	withSearch: PropTypes.bool,
-}
-
-Header.defaultProps = {
-	withSearch: true,
 }
 
 export { Header }

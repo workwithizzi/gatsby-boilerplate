@@ -6,7 +6,7 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 
-export const _queryMeta = graphql`
+const _queryMeta = graphql`
 	query {
 		site {
 			siteMetadata {
@@ -53,6 +53,7 @@ function SEO({ description, lang, meta, title }) {
 				},
 				{
 					name: `twitter:creator`,
+					// TODO: Add option for page-author and default 'fallback' author.
 					content: site.siteMetadata.author,
 				},
 				{
