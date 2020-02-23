@@ -2,7 +2,7 @@
 # Full details and code samples: https://t.ly/VZ3Zd
 backend:
   name: github
-  branch: cms-setup # Branch that the CMS will publish to
+  branch: feature/cms-setup # Branch that the CMS will publish to
   repo: yisraelgrimes/gatsby-boilerplate
 
 # Allow for drafting, reviewing, approving posts
