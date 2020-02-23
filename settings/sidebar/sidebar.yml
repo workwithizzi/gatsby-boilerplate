@@ -1,0 +1,14 @@
+recentPosts:
+  visible: true
+  heading: Recent Posts Section
+  count: 5
+featured:
+  visible: true
+  heading: Featured Links Section
+  links:
+    - title: "Link One"
+      path: "https://www.facebook.com"
+    - title: "Link Two"
+      path: "https://www.twitter.com"
+    - title: "Link Three"
+      path: "https://www.youtube.com"

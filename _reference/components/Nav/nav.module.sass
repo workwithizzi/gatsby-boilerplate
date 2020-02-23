@@ -1,0 +1,73 @@
+// ------------------------------------------------------------------
+// Primary Navigation Component
+//
+// Styling for the responisve nav, toggle button, and logo
+// ------------------------------------------------------------------
+
+@import 'tools'
+
+// ------------------------------------
+// Nav-specific Utilities
+// ------------------------------------
+
+// Breakpoint Mixin Alias
+=_bp
+	+bp(800px)
+		@content
+
+
+// Navigation Height
+$_nav-height: 5rem
+
+
+// ------------------------------------
+// Responsive Nav Stuff
+// ------------------------------------
+
+// Show button on small screens
+.buttonToggle
+	display: inline
+	+_bp
+		display: none
+
+// Hide menu on small screens
+.mainMenu
+	display: none
+	+_bp
+		display: inline
+
+// Show menu when button is clicked
+.isActive
+	display: inline
+
+
+// ------------------------------------
+// Navigation Styling
+// ------------------------------------
+
+.nav
+	height: $_nav-height
+	background: $cl_nav-bg
+	display: inline-block
+	color: $cl_nav_text
+
+	ul
+		padding: 0
+
+.mainMenu
+	> li
+		display: inline-block
+
+	a
+		padding-left: 10px
+		padding-right: 10px
+		display: block
+		line-height: $_nav-height
+		text-decoration: none
+		color: $cl_nav_text
+		transition: $base_animation
+		&:hover
+			background: darken($cl_nav-bg, 5%)
+
+.subnav
+	display: inline

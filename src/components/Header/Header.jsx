@@ -1,8 +1,9 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Nav } from "../Nav/Nav"
+import { ResponsiveNav } from "../Nav/ResponsiveNav"
+
 import { InlineLogo } from "../svgs/InlineLogo"
 
 import styles from "./header.module.sass"
@@ -18,7 +19,7 @@ const _queryMeta = graphql`
 	}
 `
 
-const Header = ({ withSearch }) => {
+const Header = () => {
 	const { site } = useStaticQuery(_queryMeta)
 
 	return (
@@ -33,34 +34,13 @@ const Header = ({ withSearch }) => {
 					desc="This is a cat wit an astronaut helmet"
 					className={styles.logo}
 				/>
-				{/* <div style={{height: `100px`, width: `100px`, color:`#000`}}>
-				</div> */}
 			</Link>
 
-			<Nav />
-
-			{/* Search */}
-			{ withSearch &&
-				<form role="search">
-					<label>
-						Search
-						<input type="search"/>
-					</label>
-					<button type="submit">Submit</button>
-				</form>
-			}
+			{/* <Nav /> */}
+			<ResponsiveNav />
 
 		</header>
 	)
-}
-
-
-Header.propTypes = {
-	withSearch: PropTypes.bool,
-}
-
-Header.defaultProps = {
-	withSearch: true,
 }
 
 export { Header }

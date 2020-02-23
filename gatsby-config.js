@@ -1,41 +1,20 @@
 // Project Configurations
 // - Site Metadata
 // - Gatsby Plugins & Configs
+const fs = require(`fs`)
+const yaml = require(`js-yaml`)
+
+const userMeta = fs.readFileSync(`./settings/siteMeta/siteMeta.yml`, `utf8`)
+const siteMeta = yaml.safeLoad(userMeta)
 
 
 module.exports = {
 	siteMetadata: {
-		title: `Boilerplate Title`,
-		description: `This is a site description!`,
-		author: `@GrimesClassic`,
-		menuLinks: [
-			{
-				name: `Home`,
-				path: `/`,
-			},
-			{
-				name: `Blog`,
-				path: `/blog`,
-			},
-			{
-				name: `Sidebar Page`,
-				path: `/sidebar-page`,
-			},
-			{
-				name: `Dropdown`,
-				path: `/`,
-				childMenuLinks: [
-					{
-						name: `Link One`,
-						path: `/`,
-					},
-					{
-						name: `Link Two`,
-						path: `/`,
-					},
-				],
-			},
-		],
+		// Getting meta from the yaml settings so that Netlify users
+		// can access it.
+		title: siteMeta.title,
+		description: siteMeta.description,
+		author: siteMeta.defaultAuthor,
 	},
 	plugins: [
 		`gatsby-plugin-sitemap`,
@@ -50,6 +29,7 @@ module.exports = {
 				],
 			},
 		},
+		`gatsby-transformer-yaml`,
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
@@ -57,14 +37,16 @@ module.exports = {
 				path: `${__dirname}/src/images`,
 			},
 		},
-		// {
-		// 	resolve: `gatsby-source-filesystem`,
-		// 	options: {
-		// 		name: `pages`,
-		// 		path: `${__dirname}/src/pages/`,
-		// 	},
-		// },
 		{
+			// Yaml files, used for site-settings
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `settings`,
+				path: `${__dirname}/settings/`,
+			},
+		},
+		{
+			// .md files, used for site content
 			resolve: `gatsby-source-filesystem`,
 			options: {
 				name: `content`,
@@ -92,13 +74,13 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: `gatsby-boilerplate`,
-				short_name: `boilerplate`,
+				name: siteMeta.manifest.name,
+				short_name: siteMeta.manifest.shortName,
 				start_url: `/`,
-				background_color: `#333333`,
-				theme_color: `#333333`,
-				display: `minimal-ui`,
-				icon: `src/images/icon-dark.png`, // Relative to the root of the site.
+				background_color: siteMeta.manifest.backgroundColor,
+				theme_color: siteMeta.manifest.themeColor,
+				display: siteMeta.manifest.display,
+				icon: siteMeta.manifest.icon, // Relative to the root of the site.
 			},
 		},
 		`gatsby-plugin-offline`, // Add this plugin after 'manifest'
