@@ -31,8 +31,9 @@ collections:
       - { label: "Publish Date", name: "date", widget: "date" }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  # Folder Collection
   - name: "pages" # Post-type identifier, used in routes, e.g., /admin/collections/blog (must be unique)
-    label: "Pages" # The UI name in the main 'Collections' menu
+    label: "Internal Pages" # The UI name in the main 'Collections' menu
     description: "Description of the collection. Displayed below the label when viewing a collection. Optional." # Optional. Shown with the label in the UI.
     folder: "content/pages" # Where the CMS stores new documents in the collection.
     create: true # Users can create items in the collection; defaults to false
@@ -45,3 +46,18 @@ collections:
       - { label: "Show Sidebar", name: "sidebar", widget: "boolean", default: false }
       - { label: "Publish Date", name: "date", widget: "date" }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  # File Collections (Unique Documents)
+  # Can only be updated, not created or removed
+  - name: "pages"
+    label: "Pages"
+    files:
+      # Home Page
+      - file: "content/index.md" # Location of File
+        label: "Home Page" # Shown in the 'Pages' collection-list
+        name: "index"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Template", name: "template", widget: "string", default: "home" }
+          - { label: "Publish Date", name: "date", widget: "date" }
+          - { label: "Body", name: "body", widget: "markdown" }
