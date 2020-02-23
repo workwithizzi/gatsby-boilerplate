@@ -57,7 +57,18 @@ collections:
         label: "Home Page" # Shown in the 'Pages' collection-list
         name: "index"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Title", name: "title", widget: "string", default: "Home Page" }
           - { label: "Template", name: "template", widget: "string", default: "home" }
           - { label: "Publish Date", name: "date", widget: "date" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      # Blog Page
+      - file: "content/blog.md" # Location of File
+        label: "Blog" # Shown in the 'Pages' collection-list
+        name: "blog"
+        fields:
+          - { label: "Title", name: "title", widget: "string", default: "Blog Index Page" }
+          - { label: "Template", name: "template", widget: "string", default: "blog-index" }
+          - { label: "Show Sidebar", name: "sidebar", widget: "boolean", default: true }
+          - { label: "Publish Date", name: "date", widget: "date" }
+          - { label: "Number of Posts to show on the main page.", name: "postCount", widget: "number", default: 10 }
           - { label: "Body", name: "body", widget: "markdown" }
