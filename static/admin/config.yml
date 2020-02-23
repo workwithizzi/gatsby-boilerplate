@@ -32,7 +32,7 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
 
   # Folder Collection
-  - name: "pages" # Post-type identifier, used in routes, e.g., /admin/collections/blog (must be unique)
+  - name: "internal-pages" # Post-type identifier, used in routes, e.g., /admin/collections/blog (must be unique)
     label: "Internal Pages" # The UI name in the main 'Collections' menu
     description: "Description of the collection. Displayed below the label when viewing a collection. Optional." # Optional. Shown with the label in the UI.
     folder: "content/pages" # Where the CMS stores new documents in the collection.
