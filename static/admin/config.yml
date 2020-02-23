@@ -14,17 +14,34 @@ media_folder: static/img
 # Those uploaded files can be accessed on the published site at 'public_folder'
 public_folder: /img
 
-# Design Content
+
+# Folder Collection: Users can create/delete new items based on a template
 collections:
-  - name: "posts"
-    label: "Posts"
-    description: "Description of the collection. Displayed below the label when viewing a collection. Optional."
-    folder: "content/posts"
-    create: true # Allows users to create new items in a 'folder' collection; defaults to false
-    delete: true # Prevents users from deleting items in a collection; defaults to true
+  - name: "posts" # Post-type identifier, used in routes, e.g., /admin/collections/blog (must be unique)
+    label: "Posts" # The UI name in the main 'Collections' menu
+    description: "Description of the collection. Displayed below the label when viewing a collection. Optional." # Optional. Shown with the label in the UI.
+    folder: "content/posts" # Where the CMS stores new documents in the collection.
+    create: true # Users can create items in the collection; defaults to false
+    delete: true # Users can delete items in the collection; defaults to true
+    # slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Also used for naming the file; Must be unique.
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Template", name: "template", widget: "string", default: "post" }
+      - { label: "Publish Date", name: "date", widget: "date" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "pages" # Post-type identifier, used in routes, e.g., /admin/collections/blog (must be unique)
+    label: "Pages" # The UI name in the main 'Collections' menu
+    description: "Description of the collection. Displayed below the label when viewing a collection. Optional." # Optional. Shown with the label in the UI.
+    folder: "content/pages" # Where the CMS stores new documents in the collection.
+    create: true # Users can create items in the collection; defaults to false
+    delete: true # Users can delete items in the collection; defaults to true
+    # slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Also used for naming the file; Must be unique.
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Template", name: "template", widget: "string", default: "page" }
+      - { label: "Show Sidebar", name: "sidebar", widget: "boolean", default: false }
       - { label: "Publish Date", name: "date", widget: "date" }
       - { label: "Body", name: "body", widget: "markdown" }
