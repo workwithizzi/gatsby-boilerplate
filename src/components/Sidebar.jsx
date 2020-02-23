@@ -1,8 +1,6 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-import { RecentPosts } from "./RecentPosts"
-
 const _querySidebar = graphql`
 	query {
 		sidebarYaml {
@@ -20,6 +18,23 @@ const _querySidebar = graphql`
 				}
 			}
 		}
+		allMarkdownRemark(
+			limit: 5,
+			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { template: { eq: "post" } } }
+		) {
+			edges {
+				node {
+					excerpt
+					fields {
+						fullSlug
+					}
+					frontmatter {
+						title
+					}
+				}
+			}
+		}
 	}
 `
 
@@ -28,16 +43,30 @@ const _querySidebar = graphql`
 const Sidebar = () => {
 	const data = useStaticQuery(_querySidebar)
 	const recentPosts = data.sidebarYaml.recentPosts
+	const posts = data.allMarkdownRemark.edges
 	const featured = data.sidebarYaml.featured
 
 	return (
 		<aside>
+
 			{recentPosts.visible &&
 				<section>
 					<h3>{recentPosts.heading}</h3>
-					<RecentPosts />
+					<ul>
+						{/* TODO: Use the 'count' object from yaml to
+						determine how many posts to show instead of the
+						graphql filter */}
+						{posts.map(item => (
+							<li key={item.node.fields.fullSlug}>
+								<Link to={item.node.fields.fullSlug}>
+									{item.node.frontmatter.title}
+								</Link>
+							</li>
+						))}
+					</ul>
 				</section>
 			}
+
 			{featured.visible &&
 				<section>
 					<h3>{featured.heading}</h3>
@@ -48,6 +77,7 @@ const Sidebar = () => {
 					</ul>
 				</section>
 			}
+
 		</aside>
 	)
 }

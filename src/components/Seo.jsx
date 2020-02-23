@@ -19,9 +19,10 @@ const _queryMeta = graphql`
 `
 
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title, author }) {
 	const { site } = useStaticQuery(_queryMeta)
 	const metaDescription = description || site.siteMetadata.description
+	const pageAuthor = author || site.siteMetadata.author
 
 	return (
 		<Helmet
@@ -53,8 +54,7 @@ function SEO({ description, lang, meta, title }) {
 				},
 				{
 					name: `twitter:creator`,
-					// TODO: Add option for page-author and default 'fallback' author.
-					content: site.siteMetadata.author,
+					content: pageAuthor,
 				},
 				{
 					name: `twitter:title`,

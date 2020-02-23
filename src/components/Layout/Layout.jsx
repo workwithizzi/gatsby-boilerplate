@@ -10,14 +10,19 @@ import { SEO } from "../Seo"
 import skipStyles from "./skiplink.module.sass"
 
 
-const Layout = ({ title, children, withSidebar }) => {
+const Layout = ({ withSidebar, title, description, meta, author, children }) => {
 	return (
 		<>
-			<SEO title={title} />
-			{/* Accessibility Skiplink */}
+			<SEO
+				title={title}
+				description={description}
+				meta={meta}
+				author={author}
+			/>
 
+			{/* Accessibility Skiplink */}
 			<a className={skipStyles.container} href="#scroll-main">
-					Jump to main content.
+				Jump to main content.
 			</a>
 
 			<Header />

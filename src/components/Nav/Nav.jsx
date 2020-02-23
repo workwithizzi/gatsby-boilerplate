@@ -1,3 +1,4 @@
+// Basic Nav Component
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
@@ -13,24 +14,18 @@ const _queryMenu = graphql`
 	}
 `
 
-const _Item = ({title, path}) => (
-	<li>
-		<Link to={path}>
-			{title}
-		</Link>
-	</li>
-)
 
 const Nav = () => {
 	const data = useStaticQuery(_queryMenu)
 	return (
 		<nav role="navigation">
 
-			<ul>
+			<ul id="mainMenu">
 				{data.mainNavYaml.menu.map(item => (
-					<_Item title={item.title} path={item.path} key={item.path}/>
+					<li key={item.path}>
+						<Link to={item.path}>{item.title}</Link>
+					</li>
 				))}
-
 			</ul>
 
 		</nav>
