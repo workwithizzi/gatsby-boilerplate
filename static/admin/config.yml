@@ -10,7 +10,7 @@ backend:
 # publish_mode: editorial_workflow
 
 # CMS users can upload files to the repo using the Media Gallery to the 'media_folder'.
-media_folder: static/img
+media_folder: data/img
 # Those uploaded files can be accessed on the published site at 'public_folder'
 public_folder: /img
 
