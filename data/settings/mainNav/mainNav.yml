@@ -9,5 +9,3 @@ menu:
     title: With Sidebar
   - path: /contact
     title: Contact Us
-  - path: /posts/first-cms-post
-    title: Test Link
