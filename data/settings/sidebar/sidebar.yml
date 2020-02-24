@@ -1,14 +1,14 @@
 recentPosts:
-  visible: true
+  count: 2
   heading: Recent Posts
-  count: 5
-featured:
   visible: true
+featured:
   heading: Notable Links
   links:
-    - title: "Link One"
-      path: "https://www.facebook.com"
-    - title: "Link Two"
-      path: "https://www.twitter.com"
-    - title: "Link Three"
-      path: "https://www.youtube.com"
+    - path: 'https://www.facebook.com'
+      title: Facebook
+    - path: 'https://www.twitter.com'
+      title: Twitter
+    - path: 'https://www.youtube.com'
+      title: Youtube
+  visible: true
