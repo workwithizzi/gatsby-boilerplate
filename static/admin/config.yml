@@ -18,7 +18,7 @@ public_folder: /img
 # site_url: https://your-site.com
 
 # When specified, the CMS UI will include a link in the fixed area at the top of the page, allowing content authors to easily return to your main site.
-display_url: https://your-site.com
+display_url: localhost:8000
 
 # When specified, the CMS UI will change the logo displayed at the top of the login page
 # logo_url: https://your-site.com/images/logo.svg
