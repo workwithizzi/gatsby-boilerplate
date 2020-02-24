@@ -4,7 +4,7 @@
 const fs = require(`fs`)
 const yaml = require(`js-yaml`)
 
-const userMeta = fs.readFileSync(`./settings/siteMeta/siteMeta.yml`, `utf8`)
+const userMeta = fs.readFileSync(`./data/settings/siteMeta/siteMeta.yml`, `utf8`)
 const siteMeta = yaml.safeLoad(userMeta)
 
 
@@ -31,26 +31,11 @@ module.exports = {
 		},
 		`gatsby-transformer-yaml`,
 		{
+			// Used like a 'database' but also includes images
 			resolve: `gatsby-source-filesystem`,
 			options: {
-				name: `images`,
-				path: `${__dirname}/src/images`,
-			},
-		},
-		{
-			// Yaml files, used for site-settings
-			resolve: `gatsby-source-filesystem`,
-			options: {
-				name: `settings`,
-				path: `${__dirname}/settings/`,
-			},
-		},
-		{
-			// .md files, used for site content
-			resolve: `gatsby-source-filesystem`,
-			options: {
-				name: `content`,
-				path: `${__dirname}/content/`,
+				name: `data`,
+				path: `${__dirname}/data/`,
 			},
 		},
 		{
