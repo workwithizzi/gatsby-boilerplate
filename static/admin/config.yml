@@ -87,13 +87,13 @@ collections:
     extension: "yml"
     files:
       # Site Meta
-      - file: "data/settings/testMeta/siteMeta.yml"
+      - file: "data/settings/siteMeta/siteMeta.yml"
         label: "Site MetaData"
         name: "siteMeta"
         fields:
           - { label: "Site Title", name: "title", widget: "string", required: true }
           - { label: "Site Description", name: "description", widget: "text" }
-          - { label: "Default Content Author", name: "defaultAuthor", widget: "text", default: "Bob Ross" }
+          - { label: "Default Content Author", name: "defaultAuthor", widget: "string", default: "Bob Ross" }
           - label: "Advanced Settings"
             name: "manifest"
             widget: "object"
