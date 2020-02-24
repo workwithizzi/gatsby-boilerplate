@@ -119,3 +119,29 @@ collections:
               - { label: "Menu Title", name: "title", widget: "string", default: "Contact Us", required: true }
               - { label: "Path to Page", name: "path", widget: "string", default: "/contact-us", required: true }
               # TODO: Instead of a string, we might be able to make this relational
+
+      # Sidebar
+      - file: "data/settings/sidebar/sidebar.yml"
+        label: "Sidebar"
+        name: "sidebar"
+        fields:
+          - label: "Recent Posts Section"
+            name: "recentPosts"
+            widget: "object"
+            fields:
+              - { label: "Show Recent Posts", name: "visible", widget: "boolean", default: true }
+              - { label: "Section Heading", name: "heading", widget: "string", default: "Recent Posts" }
+              - { label: "Number of posts to display", name: "count", widget: "number", default: 5 }
+          - label: "Featured Links Section"
+            name: "featured"
+            widget: "object"
+            fields:
+              - { label: "Show Recent Posts", name: "visible", widget: "boolean", default: true }
+              - { label: "Section Heading", name: "heading", widget: "string", default: "Notable Links" }
+              - { label: "Number of posts to display", name: "count", widget: "number", default: 5 }
+              - label: "Links"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Link Name", name: "title", widget: "string", default: "Facebook", required: true }
+                  - { label: "Full URL", name: "path", widget: "string", default: "https://facebook.com", required: true }

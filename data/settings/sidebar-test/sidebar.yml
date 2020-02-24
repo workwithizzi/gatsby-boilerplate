@@ -1,10 +1,10 @@
 recentPosts:
   visible: true
-  heading: Recent Posts
+  heading: Recent Posts Section
   count: 5
 featured:
   visible: true
-  heading: Notable Links
+  heading: Featured Links Section
   links:
     - title: "Link One"
       path: "https://www.facebook.com"
