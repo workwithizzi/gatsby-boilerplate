@@ -7,4 +7,4 @@ manifest:
   backgroundColor: "#333333"
   themeColor: "#333333"
   display: minimal-ui
-  icon: data/images/icon-dark.png
+  icon: data/img/icon-dark.png
