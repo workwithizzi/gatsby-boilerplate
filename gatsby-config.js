@@ -38,6 +38,8 @@ module.exports = {
 				path: `${__dirname}/data/`,
 			},
 		},
+		`gatsby-transformer-sharp`,
+		`gatsby-plugin-sharp`,
 		{
 			// Used for markdown
 			resolve: `gatsby-transformer-remark`,
@@ -51,11 +53,19 @@ module.exports = {
 				// GitHub Flavored Markdown mode (default: true)
 				gfm: true,
 				// Plugins configs
-				plugins: [],
+				plugins: [
+					`gatsby-remark-relative-images`,
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							maxWidth: 800,
+							// Don't turn the image into a link to it's original
+							linkImagesToOriginal: false,
+						},
+					},
+				],
 			},
 		},
-		`gatsby-transformer-sharp`,
-		`gatsby-plugin-sharp`,
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
