@@ -136,9 +136,38 @@ collections:
             name: "featured"
             widget: "object"
             fields:
-              - { label: "Show Recent Posts", name: "visible", widget: "boolean", default: true }
+              - { label: "Show Featured Links", name: "visible", widget: "boolean", default: true }
               - { label: "Section Heading", name: "heading", widget: "string", default: "Notable Links" }
-              - { label: "Number of posts to display", name: "count", widget: "number", default: 5 }
+              - label: "Links"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Link Name", name: "title", widget: "string", default: "Facebook", required: true }
+                  - { label: "Full URL", name: "path", widget: "string", default: "https://facebook.com", required: true }
+
+      # Footer
+      - file: "data/settings/footer/footer.yml"
+        label: "Footer"
+        name: "footer"
+        fields:
+          - label: "Extra Navigation Section"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - { label: "Show Section", name: "visible", widget: "boolean", default: true }
+              - { label: "Section Heading", name: "heading", widget: "string", default: "Site Navigation" }
+              - label: "Menu Items"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Menu Name", name: "title", widget: "string", default: "Contact-Us", required: true }
+                  - { label: "Path to Page", name: "path", widget: "string", default: "/contact-us", required: true }
+          - label: "Social Media"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Show Section", name: "visible", widget: "boolean", default: true }
+              - { label: "Section Heading", name: "heading", widget: "string", default: "Get Social" }
               - label: "Links"
                 name: "links"
                 widget: "list"
