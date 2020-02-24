@@ -93,6 +93,7 @@ collections:
         fields:
           - { label: "Site Title", name: "title", widget: "string", required: true }
           - { label: "Site Description", name: "description", widget: "text" }
+          # TODO: Might add a relation widget for the default author and link to an 'authors' page
           - { label: "Default Content Author", name: "defaultAuthor", widget: "string", default: "Bob Ross" }
           - label: "Advanced Settings"
             name: "manifest"
@@ -105,3 +106,16 @@ collections:
               - { label: "Display Style", name: "display", widget: "string", default: "minimal-ui", required: true }
               - { label: "Icon File", name: "icon", widget: "string", default: "data/img/icon-dark.png", required: true }
               # TODO: Instead of a string, we should make this an image-type
+
+      # Main Navigation
+      - file: "data/settings/mainNav/mainNav.yml"
+        label: "Site Navigation"
+        name: "mainNav"
+        fields:
+          - label: "Menu Items"
+            name: "menu"
+            widget: "list"
+            fields:
+              - { label: "Menu Title", name: "title", widget: "string", default: "Contact Us", required: true }
+              - { label: "Path to Page", name: "path", widget: "string", default: "/contact-us", required: true }
+              # TODO: Instead of a string, we might be able to make this relational
