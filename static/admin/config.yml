@@ -14,6 +14,14 @@ media_folder: static/images
 # Those uploaded files can be accessed on the published site at 'public_folder'
 public_folder: /img
 
+# URL of the published site
+# site_url: https://your-site.com
+
+# When specified, the CMS UI will include a link in the fixed area at the top of the page, allowing content authors to easily return to your main site.
+display_url: https://your-site.com
+
+# When specified, the CMS UI will change the logo displayed at the top of the login page
+# logo_url: https://your-site.com/images/logo.svg
 
 # Folder Collection: Users can create/delete new items based on a template
 collections:
@@ -72,3 +80,28 @@ collections:
           - { label: "Publish Date", name: "date", widget: "date" }
           - { label: "Number of Posts to show on the main page.", name: "postCount", widget: "number", default: 10 }
           - { label: "Body", name: "body", widget: "markdown" }
+
+  # Settings Collections
+  - name: "settings"
+    label: "Settings"
+    extension: "yml"
+    files:
+      # Site Meta
+      - file: "data/settings/testMeta/siteMeta.yml"
+        label: "Site MetaData"
+        name: "siteMeta"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string", required: true }
+          - { label: "Site Description", name: "description", widget: "text" }
+          - { label: "Default Content Author", name: "defaultAuthor", widget: "text", default: "Bob Ross" }
+          - label: "Advanced Settings"
+            name: "manifest"
+            widget: "object"
+            fields:
+              - { label: "Project Name", name: "name", widget: "string", default: "gatsby-boilerplate", required: true }
+              - { label: "Project Short-Name", name: "shortName", widget: "string", default: "boilerplate", required: true }
+              - { label: "Background Color", name: "backgroundColor", widget: "string", default: "#333333", required: true }
+              - { label: "Theme Color", name: "themeColor", widget: "string", default: "#333333", required: true }
+              - { label: "Display Style", name: "display", widget: "string", default: "minimal-ui", required: true }
+              - { label: "Icon File", name: "icon", widget: "string", default: "data/img/icon-dark.png", required: true }
+              # TODO: Instead of a string, we should make this an image-type

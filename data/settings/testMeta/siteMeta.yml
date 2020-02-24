@@ -1,0 +1,10 @@
+title: Boilerplate Title
+description: This is a site description!
+defaultAuthor: "@GrimesClassic"
+manifest:
+  name: gatsby-boilerplate
+  shortName: boilerplate
+  backgroundColor: "#333333"
+  themeColor: "#333333"
+  display: minimal-ui
+  icon: data/img/icon-dark.png
