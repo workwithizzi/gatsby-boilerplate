@@ -7,7 +7,7 @@ This is the index (home) page body. This content is added through the `content/i
 
 ## Here's an image!
 
-![Dog](./bg.jpg)
+![Dog](/img/dog.jpg)
 
 ![Cat](/img/cat.jpg "Uploaded through the editor")
 
