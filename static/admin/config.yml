@@ -92,6 +92,7 @@ collections:
         name: "siteMeta"
         fields:
           - { label: "Site Title", name: "title", widget: "string", required: true }
+          - { label: "Site URL", name: "title", widget: "string", default: "https://www.example.com", required: true }
           - { label: "Site Description", name: "description", widget: "text" }
           # TODO: Might add a relation widget for the default author and link to an 'authors' page
           - { label: "Default Content Author", name: "defaultAuthor", widget: "string", default: "Bob Ross" }

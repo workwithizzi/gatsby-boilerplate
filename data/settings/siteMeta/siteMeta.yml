@@ -6,5 +6,6 @@ manifest:
   display: minimal-ui
   icon: static/images/icon-dark.png
   name: gatsby-boilerplate
+  siteUrl: https://www.gatlify.com
   shortName: boilerplate
   themeColor: '#333333'

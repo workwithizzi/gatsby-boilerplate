@@ -15,6 +15,7 @@ module.exports = {
 		title: siteMeta.title,
 		description: siteMeta.description,
 		author: siteMeta.defaultAuthor,
+		siteUrl: siteMeta.siteUrl,
 	},
 	plugins: [
 		`gatsby-plugin-sitemap`,
