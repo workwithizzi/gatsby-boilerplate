@@ -19,7 +19,7 @@ const _queryMeta = graphql`
 `
 
 
-function SEO({ description, lang, meta, title, author }) {
+function Seo({ description, lang, meta, title, author }) {
 	const { site } = useStaticQuery(_queryMeta)
 	const metaDescription = description || site.siteMetadata.description
 	const pageAuthor = author || site.siteMetadata.author
@@ -70,14 +70,14 @@ function SEO({ description, lang, meta, title, author }) {
 }
 
 
-SEO.defaultProps = {
+Seo.defaultProps = {
 	lang: `en`,
 	meta: [],
 	description: ``,
 }
 
 
-SEO.propTypes = {
+Seo.propTypes = {
 	description: PropTypes.string,
 	lang: PropTypes.string,
 	meta: PropTypes.arrayOf(PropTypes.object),
@@ -85,4 +85,4 @@ SEO.propTypes = {
 }
 
 
-export { SEO }
+export { Seo }

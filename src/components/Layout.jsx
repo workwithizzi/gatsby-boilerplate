@@ -2,18 +2,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { Header } from "../Header/Header"
-import { Sidebar } from "../Sidebar"
-import { Footer } from "../Footer"
-import { SEO } from "../Seo"
-
-import skipStyles from "./skiplink.module.sass"
+import { Seo, Header, Sidebar, Footer } from "./index"
+import skipStyles from "./layoutSkiplink.module.sass"
 
 
 const Layout = ({ withSidebar, title, description, meta, author, children }) => {
 	return (
 		<>
-			<SEO
+			<Seo
 				title={title}
 				description={description}
 				meta={meta}

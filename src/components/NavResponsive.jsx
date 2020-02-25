@@ -4,8 +4,7 @@
 import React, { Component } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
-import { OpenIcon } from "../svgs/OpenIcon"
-import { CloseIcon } from "../svgs/CloseIcon"
+import { OpenIcon, CloseIcon } from "./index"
 import styles from "./nav.module.sass"
 
 
@@ -38,7 +37,7 @@ const _Menu = ({ className }) => {
 // Using react to conditionally render which menu button to show
 // Using css to hide/show the menu depending on state so that the
 // menu will always be accessible for screen-readers and SEO
-class ResponsiveNav extends Component {
+class NavResponsive extends Component {
 	state = {
 		showMenu: false,
 	}
@@ -84,4 +83,4 @@ class ResponsiveNav extends Component {
 }
 
 
-export { ResponsiveNav }
+export { NavResponsive }

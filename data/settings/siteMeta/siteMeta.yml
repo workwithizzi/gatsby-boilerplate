@@ -4,7 +4,7 @@ defaultAuthor: '@GrimesClassic'
 manifest:
   backgroundColor: '#333333'
   display: minimal-ui
-  icon: data/img/icon-dark.png
+  icon: static/images/icon-dark.png
   name: gatsby-boilerplate
   shortName: boilerplate
   themeColor: '#333333'

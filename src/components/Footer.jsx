@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-
 const _queryFooter = graphql`
 	query {
 		footerYaml {

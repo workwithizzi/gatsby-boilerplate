@@ -3,7 +3,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import { Layout } from "../components/Layout/Layout"
+import { Layout } from "../components"
 
 
 export const _queryPage = graphql`

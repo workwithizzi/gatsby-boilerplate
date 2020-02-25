@@ -1,3 +1,6 @@
+// This component is used only for making it easier
+// to set up new SVG components
+
 import React from "react"
 import PropTypes from "prop-types"
 
