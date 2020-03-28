@@ -1,3 +1,3 @@
-site_url: example.com
+site_url: example.com # hello from the web
 config_path: limber # {string} [required] path from project root to content-type config files
 status: published # {select} published | private | staging (default = published)
