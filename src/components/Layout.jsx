@@ -1,14 +1,15 @@
 // Basic page structure
-import React from "react"
-import PropTypes from "prop-types"
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 
-import { Seo, Header, Sidebar, Footer } from "./index"
-import skipStyles from "./layoutSkiplink.module.sass"
+import { Seo, Skiplink, Header, Sidebar, Footer } from './index'
 
 
-const Layout = ({ withSidebar, title, description, meta, author, children }) => {
+export function Layout({
+	withSidebar, title, description, meta, author, children,
+}) {
 	return (
-		<>
+		<Fragment>
 			<Seo
 				title={title}
 				description={description}
@@ -17,13 +18,11 @@ const Layout = ({ withSidebar, title, description, meta, author, children }) => 
 			/>
 
 			{/* Accessibility Skiplink */}
-			<a className={skipStyles.container} href="#scroll-main">
-				Jump to main content.
-			</a>
+			<Skiplink />
 
 			<Header />
 
-			<main id="scroll-main" role="main">
+			<main id='scroll-main' role='main'>
 				{children}
 			</main>
 
@@ -31,7 +30,7 @@ const Layout = ({ withSidebar, title, description, meta, author, children }) => 
 
 			<Footer />
 
-		</>
+		</Fragment>
 	)
 }
 
@@ -45,5 +44,3 @@ Layout.propTypes = {
 Layout.defaultProps = {
 	withSidebar: false,
 }
-
-export { Layout }

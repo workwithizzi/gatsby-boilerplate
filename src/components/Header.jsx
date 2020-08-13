@@ -1,42 +1,25 @@
-import React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import React from 'react'
 
-import { Nav, NavResponsive, InlineLogo } from "./index"
-import styles from "./header.module.sass"
+import { Link, Nav, InlineLogo } from './index'
+import { settings } from '../../data'
 
 
-const _queryMeta = graphql`
-	query {
-		site {
-			siteMetadata {
-				title
-			}
-		}
-	}
-`
-
-const Header = () => {
-	const { site } = useStaticQuery(_queryMeta)
-
+export function Header() {
 	return (
 		<header>
 			{/* Site Logo */}
-			<Link to="/">
-				<span className="u_sr_only">{site.siteMetadata.title}</span>
-				{/* Div around logo is temporary */}
+			<Link to='/'>
+				<span className='u_sr_only'>{settings.siteMeta.title}</span>
 				<InlineLogo
-					fillColor="orange"
-					title="SpaceCat"
-					desc="This is a cat wit an astronaut helmet"
-					className={styles.logo}
+					fillColor='orange'
+					title='SpaceCat'
+					desc='This is a cat wit an astronaut helmet'
+					style={{width:`8rem`, height:`8rem`}}
 				/>
 			</Link>
 
-			{/* <Nav /> */}
-			<NavResponsive />
+			<Nav />
 
 		</header>
 	)
 }
-
-export { Header }

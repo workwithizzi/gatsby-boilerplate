@@ -1,9 +1,9 @@
 // Template used for default/basic pages.
 
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import { Layout } from "../components"
+import { Layout } from '../components'
 
 
 export const _queryPage = graphql`
@@ -20,14 +20,12 @@ export const _queryPage = graphql`
 `
 
 
-const DefaultPageTemplate = ({ data }) => {
+export default function DefaultPageTemplate({ data }) {
 	const page = data.markdownRemark
 	const sidebar = page.frontmatter.sidebar
 
 	return (
 		<Layout title={page.frontmatter.title} withSidebar={sidebar}>
-			<pre>Default Page Template</pre>
-			<hr />
 
 			<h1>{page.frontmatter.title}</h1>
 			<p>{page.frontmatter.date}</p>
@@ -38,5 +36,3 @@ const DefaultPageTemplate = ({ data }) => {
 		</Layout>
 	)
 }
-
-export default DefaultPageTemplate

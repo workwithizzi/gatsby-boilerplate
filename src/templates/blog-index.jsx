@@ -1,9 +1,10 @@
 // Template used for the blog-index (blogroll) page.
 
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
+import {v4 as uuid} from 'uuid'
 
-import { Layout } from "../components"
+import { Link, Layout } from '../components'
 
 
 export const _queryPage = graphql`
@@ -39,15 +40,13 @@ export const _queryPage = graphql`
 `
 
 
-const BlogIndexTemplate = ({ data }) => {
+export default function BlogIndexTemplate({ data }) {
 	const page = data.markdownRemark
 	const posts = data.allMarkdownRemark.edges
 	const sidebar = page.frontmatter.sidebar
 
 	return (
 		<Layout title={page.frontmatter.title} withSidebar={sidebar}>
-			<pre>Blog Index Template</pre>
-			<hr />
 
 			<h1>{page.frontmatter.title}</h1>
 			<p>{page.frontmatter.date}</p>
@@ -57,10 +56,9 @@ const BlogIndexTemplate = ({ data }) => {
 
 			<hr />
 
-
-			{/* List the posts/summaries here */}
+			{/* List the post's excerpts here */}
 			{posts.map(({ node }) => (
-				<article key={node.fields.fullSlug}>
+				<article key={uuid()}>
 					<Link to={node.fields.fullSlug}>
 						<h2>{node.frontmatter.title}</h2>
 					</Link>
@@ -73,6 +71,3 @@ const BlogIndexTemplate = ({ data }) => {
 		</Layout>
 	)
 }
-
-
-export default BlogIndexTemplate

@@ -1,9 +1,11 @@
 // SEO component that injects site metadata into <head>
 
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
+
+import { settings } from '../../data'
 
 
 const _queryMeta = graphql`
@@ -19,7 +21,7 @@ const _queryMeta = graphql`
 `
 
 
-function Seo({ description, lang, meta, title, author }) {
+export function Seo({ description, lang, meta, title, author }) {
 	const { site } = useStaticQuery(_queryMeta)
 	const metaDescription = description || site.siteMetadata.description
 	const pageAuthor = author || site.siteMetadata.author
@@ -83,6 +85,3 @@ Seo.propTypes = {
 	meta: PropTypes.arrayOf(PropTypes.object),
 	title: PropTypes.string.isRequired,
 }
-
-
-export { Seo }

@@ -1,24 +1,13 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import {v4 as uuid} from 'uuid'
+
+import { Link } from '.'
+import { settings } from '../../data'
 
 
 const _querySidebar = graphql`
 	query {
-		sidebarYaml {
-			recentPosts {
-				visible
-				heading
-				count
-			}
-			featured {
-				visible
-				heading
-				links {
-					title
-					path
-				}
-			}
-		}
 		allMarkdownRemark(
 			limit: 5,
 			sort: { order: DESC, fields: [frontmatter___date] }
@@ -39,13 +28,13 @@ const _querySidebar = graphql`
 	}
 `
 
-// TODO: Add fallback for when a section is visible but has not content.
+// TODO: Add fallback for when a section is visible but has no content.
 
-const Sidebar = () => {
+export function Sidebar() {
+	const recentPosts = settings.sidebar.recentPosts
+	const featured = settings.sidebar.featured
 	const data = useStaticQuery(_querySidebar)
-	const recentPosts = data.sidebarYaml.recentPosts
 	const posts = data.allMarkdownRemark.edges
-	const featured = data.sidebarYaml.featured
 
 	return (
 		<aside>
@@ -57,11 +46,12 @@ const Sidebar = () => {
 						{/* TODO: Use the 'count' object from yaml to
 						determine how many posts to show instead of the
 						graphql filter */}
-						{posts.map(item => (
-							<li key={item.node.fields.fullSlug}>
-								<Link to={item.node.fields.fullSlug}>
-									{item.node.frontmatter.title}
-								</Link>
+						{posts.map(i => (
+							<li key={uuid()}>
+								<Link
+									to={i.node.fields.fullSlug}
+									label={i.node.frontmatter.title}
+								/>
 							</li>
 						))}
 					</ul>
@@ -72,8 +62,8 @@ const Sidebar = () => {
 				<section>
 					<h3>{featured.heading}</h3>
 					<ul>
-						{featured.links.map(item => (
-							<li key={item.path}><a href={item.path}>{item.title}</a></li>
+						{featured.links.map(i => (
+							<li key={uuid()}><a href={i.link}>{i.label}</a></li>
 						))}
 					</ul>
 				</section>
@@ -82,6 +72,3 @@ const Sidebar = () => {
 		</aside>
 	)
 }
-
-
-export { Sidebar }

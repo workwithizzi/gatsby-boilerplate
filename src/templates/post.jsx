@@ -1,9 +1,9 @@
 // Blog (single) post page-template:
 
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import { Layout } from "../components"
+import { Layout } from '../components'
 
 
 export const _queryPage = graphql`
@@ -19,12 +19,10 @@ export const _queryPage = graphql`
 `
 
 
-const PostPageTemplate = ({ data }) => {
+export default function PostPageTemplate({ data }) {
 	const page = data.markdownRemark
 	return (
 		<Layout title={page.frontmatter.title}>
-			<pre>Post Template</pre>
-			<hr />
 			<h1>{page.frontmatter.title}</h1>
 			<p>{page.frontmatter.date}</p>
 			<div dangerouslySetInnerHTML={{
@@ -33,6 +31,3 @@ const PostPageTemplate = ({ data }) => {
 		</Layout>
 	)
 }
-
-
-export default PostPageTemplate

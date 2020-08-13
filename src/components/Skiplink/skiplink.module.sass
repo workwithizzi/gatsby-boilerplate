@@ -11,27 +11,27 @@
 
 .container
 	background: transparent
-	border: $a11y_attention
-	color: $a11y_light
+	border: #e60000
+	color: #ffffff
 	display: inline-block
 	left: -101%
 	list-style: none
 	opacity: 1
-	padding: r(8px)
+	padding: 0.8rem
 	line-height: 1
-	font-size: r(18px)
+	font-size: 1.8rem
 	pointer-events: none
 	position: fixed
 	text-decoration: underline
 	top: 0
 	transition: left 1s ease-out, background 1s linear
-	z-index: $a11y_zindex
+	z-index: 19999
 	text-transform: capitalize
 
 .container:focus,
 .container:active
-	color: $a11y_light
-	background-color: $a11y_attention
+	color: #ffffff
+	background-color: #e60000
 	transition: left .5s ease-in-out, background .2s linear
 	opacity: 1
 	top: 0

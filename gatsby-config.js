@@ -1,21 +1,15 @@
 // Project Configurations
 // - Site Metadata
 // - Gatsby Plugins & Configs
-const fs = require(`fs`)
-const yaml = require(`js-yaml`)
-
-const userMeta = fs.readFileSync(`./data/settings/siteMeta/siteMeta.yml`, `utf8`)
-const siteMeta = yaml.safeLoad(userMeta)
+const settings = require(`./data/settings/siteMeta`)
 
 
 module.exports = {
 	siteMetadata: {
-		// Getting meta from the yaml settings so that Netlify users
-		// can access it.
-		title: siteMeta.title,
-		description: siteMeta.description,
-		author: siteMeta.defaultAuthor,
-		siteUrl: siteMeta.siteUrl,
+		title: settings.title,
+		description: settings.description,
+		author: settings.defaultAuthor,
+		siteUrl: settings.manifest.siteUrl,
 	},
 	plugins: [
 		`gatsby-plugin-sitemap`,
@@ -30,7 +24,17 @@ module.exports = {
 				],
 			},
 		},
-		`gatsby-transformer-yaml`,
+		{
+			resolve: `gatsby-plugin-prefetch-google-fonts`,
+			options: {
+				fonts: [
+					{
+						family: `Open Sans`,
+						variants: [`300`, `300i`, `400`, `400i`, `600`, `600i`, `700`, `700i`, `800`, `800i`],
+					},
+				],
+			},
+		},
 		{
 			// Used like a 'database' but also includes images
 			resolve: `gatsby-source-filesystem`,
@@ -41,6 +45,12 @@ module.exports = {
 		},
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
+		// {
+		// 	resolve: `gatsby-plugin-google-analytics`,
+		// 	options: {
+		// 		trackingId: settings.googleAnalyticsId,
+		// 	},
+		// },
 		{
 			// Used for markdown
 			resolve: `gatsby-transformer-remark`,
@@ -59,9 +69,19 @@ module.exports = {
 					{
 						resolve: `gatsby-remark-images`,
 						options: {
-							maxWidth: 800,
+							// It's important to specify the maxWidth (in pixels) of
+							// the content container as this plugin uses this as the
+							// base for generating different widths of each image.
+							maxWidth: 1000,
 							// Don't turn the image into a link to it's original
 							linkImagesToOriginal: false,
+							withWebp: true,
+						},
+					},
+					{
+						resolve: `gatsby-remark-copy-linked-files`,
+						options: {
+							ignoreFileExtensions: [`png`, `jpg`, `jpeg`],
 						},
 					},
 				],
@@ -70,23 +90,16 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: siteMeta.manifest.name,
-				short_name: siteMeta.manifest.shortName,
+				name: settings.manifest.name,
+				short_name: settings.manifest.shortName,
 				start_url: `/`,
-				background_color: siteMeta.manifest.backgroundColor,
-				theme_color: siteMeta.manifest.themeColor,
-				display: siteMeta.manifest.display,
-				icon: siteMeta.manifest.icon, // Relative to the root of the site.
+				background_color: settings.manifest.backgroundColor,
+				theme_color: settings.manifest.themeColor,
+				display: settings.manifest.display,
+				icon: settings.manifest.icon, // Relative to the root of the site.
 			},
 		},
 
 		`gatsby-plugin-offline`, // Add this plugin after 'manifest'
-		{
-			resolve: `gatsby-plugin-netlify-cms`,
-			// options: {
-			// 	modulePath: `${__dirname}/src/cms/cms.js`,
-			// },
-		},
-		`gatsby-plugin-netlify`, // make sure to keep it last in the array
 	],
 }

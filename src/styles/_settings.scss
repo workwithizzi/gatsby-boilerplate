@@ -114,8 +114,8 @@ $cl_link            : $cl_primary    !default;
 $cl_link-hover      : $cl_primary-dk !default;
 
 // Nav
-$cl_nav-bg          : $cl_text       !default;
-$cl_nav-text        : $cl_bg         !default;
+$cl_nav-bg          : $cl_primary    !default;
+$cl_nav-text        : $cl_white      !default;
 $cl_nav-active      : $cl_secondary  !default;
 
 // Icons

@@ -1,9 +1,10 @@
+export { Link } from './Link'
+export { Skiplink } from './Skiplink'
 export { Layout } from './Layout'
 export { Seo } from './Seo'
 export { Header } from './Header'
 export { Footer } from './Footer'
 export { Nav } from './Nav'
-export { NavResponsive } from './NavResponsive'
 
 export { Sidebar } from './Sidebar'
 

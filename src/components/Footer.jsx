@@ -1,43 +1,14 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import {v4 as uuid} from 'uuid'
 
-const _queryFooter = graphql`
-	query {
-		footerYaml {
-			navigation {
-				visible
-				heading
-				links {
-					title
-					path
-				}
-			}
-			social {
-				visible
-				heading
-				links {
-					title
-					path
-				}
-			}
-		}
-	}
-`
+import { Link } from '.'
+import { settings } from '../../data'
 
 
-const _Item = ({title, path}) => (
-	<li>
-		<Link to={path}>
-			{title}
-		</Link>
-	</li>
-)
-
-
-const Footer = () => {
-	const data = useStaticQuery(_queryFooter)
-	const nav = data.footerYaml.navigation
-	const social = data.footerYaml.social
+export function Footer() {
+	// const data = useStaticQuery(_queryFooter)
+	const nav = settings.footer.navigation
+	const social = settings.footer.social
 
 	return (
 		<footer>
@@ -46,8 +17,10 @@ const Footer = () => {
 				<section>
 					<h3>{nav.heading}</h3>
 					<ul>
-						{nav.links.map(item => (
-							<_Item title={item.title} path={item.path} key={item.path} />
+						{nav.links.map(i => (
+							<li key={uuid()}>
+								<Link to={i.link} label={i.label} />
+							</li>
 						))}
 					</ul>
 				</section>
@@ -57,8 +30,10 @@ const Footer = () => {
 				<section>
 					<h3>{social.heading}</h3>
 					<ul>
-						{social.links.map(item => (
-							<li key={item.path}><a href={item.path}>{item.title}</a></li>
+						{social.links.map(i => (
+							<li key={uuid()}>
+								<Link to={i.link} label={i.label} />
+							</li>
 						))}
 					</ul>
 				</section>
@@ -67,11 +42,8 @@ const Footer = () => {
 			<section>
 				Built with
 				{` `}
-				<a href="https://www.gatsbyjs.org">Gatsby</a>
+				<a href='https://www.gatsbyjs.org'>Gatsby</a>
 			</section>
 		</footer>
 	)
 }
-
-
-export { Footer }
