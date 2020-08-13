@@ -1,12 +1,14 @@
 // SEO component that injects site metadata into <head>
 
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
+
+import { settings } from '../../data'
 
 
-const _GET_META = graphql`
+const _queryMeta = graphql`
 	query {
 		site {
 			siteMetadata {
@@ -19,9 +21,10 @@ const _GET_META = graphql`
 `
 
 
-function SEO({ description, lang, meta, title }) {
-	const { site } = useStaticQuery(_GET_META)
+export function Seo({ description, lang, meta, title, author }) {
+	const { site } = useStaticQuery(_queryMeta)
 	const metaDescription = description || site.siteMetadata.description
+	const pageAuthor = author || site.siteMetadata.author
 
 	return (
 		<Helmet
@@ -53,7 +56,7 @@ function SEO({ description, lang, meta, title }) {
 				},
 				{
 					name: `twitter:creator`,
-					content: site.siteMetadata.author,
+					content: pageAuthor,
 				},
 				{
 					name: `twitter:title`,
@@ -69,19 +72,16 @@ function SEO({ description, lang, meta, title }) {
 }
 
 
-SEO.defaultProps = {
+Seo.defaultProps = {
 	lang: `en`,
 	meta: [],
 	description: ``,
 }
 
 
-SEO.propTypes = {
+Seo.propTypes = {
 	description: PropTypes.string,
 	lang: PropTypes.string,
 	meta: PropTypes.arrayOf(PropTypes.object),
 	title: PropTypes.string.isRequired,
 }
-
-
-export { SEO }

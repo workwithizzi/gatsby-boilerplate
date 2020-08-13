@@ -1,41 +1,15 @@
 // Project Configurations
 // - Site Metadata
 // - Gatsby Plugins & Configs
+const settings = require(`./data/settings/siteMeta`)
 
 
 module.exports = {
 	siteMetadata: {
-		title: `Boilerplate Title`,
-		description: `This is a site description!`,
-		author: `@GrimesClassic`,
-		menuLinks: [
-			{
-				name: `Home`,
-				path: `/`,
-			},
-			{
-				name: `Blog`,
-				path: `/blog`,
-			},
-			{
-				name: `Sidebar Page`,
-				path: `/sidebar-page`,
-			},
-			{
-				name: `Dropdown`,
-				path: `/`,
-				childMenuLinks: [
-					{
-						name: `Link One`,
-						path: `/`,
-					},
-					{
-						name: `Link Two`,
-						path: `/`,
-					},
-				],
-			},
-		],
+		title: settings.title,
+		description: settings.description,
+		author: settings.defaultAuthor,
+		siteUrl: settings.manifest.siteUrl,
 	},
 	plugins: [
 		`gatsby-plugin-sitemap`,
@@ -51,20 +25,32 @@ module.exports = {
 			},
 		},
 		{
-			resolve: `gatsby-source-filesystem`,
+			resolve: `gatsby-plugin-prefetch-google-fonts`,
 			options: {
-				name: `posts`,
-				path: `${__dirname}/src/posts/`,
-				ignore: [`**/.*`], // ignore files starting with a dot
+				fonts: [
+					{
+						family: `Open Sans`,
+						variants: [`300`, `300i`, `400`, `400i`, `600`, `600i`, `700`, `700i`, `800`, `800i`],
+					},
+				],
 			},
 		},
 		{
+			// Used like a 'database' but also includes images
 			resolve: `gatsby-source-filesystem`,
 			options: {
-				name: `images`,
-				path: `${__dirname}/src/images`,
+				name: `data`,
+				path: `${__dirname}/data/`,
 			},
 		},
+		`gatsby-transformer-sharp`,
+		`gatsby-plugin-sharp`,
+		// {
+		// 	resolve: `gatsby-plugin-google-analytics`,
+		// 	options: {
+		// 		trackingId: settings.googleAnalyticsId,
+		// 	},
+		// },
 		{
 			// Used for markdown
 			resolve: `gatsby-transformer-remark`,
@@ -78,23 +64,42 @@ module.exports = {
 				// GitHub Flavored Markdown mode (default: true)
 				gfm: true,
 				// Plugins configs
-				plugins: [],
+				plugins: [
+					`gatsby-remark-relative-images`,
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							// It's important to specify the maxWidth (in pixels) of
+							// the content container as this plugin uses this as the
+							// base for generating different widths of each image.
+							maxWidth: 1000,
+							// Don't turn the image into a link to it's original
+							linkImagesToOriginal: false,
+							withWebp: true,
+						},
+					},
+					{
+						resolve: `gatsby-remark-copy-linked-files`,
+						options: {
+							ignoreFileExtensions: [`png`, `jpg`, `jpeg`],
+						},
+					},
+				],
 			},
 		},
-		`gatsby-transformer-sharp`,
-		`gatsby-plugin-sharp`,
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: `gatsby-boilerplate`,
-				short_name: `boilerplate`,
+				name: settings.manifest.name,
+				short_name: settings.manifest.shortName,
 				start_url: `/`,
-				background_color: `#333333`,
-				theme_color: `#333333`,
-				display: `minimal-ui`,
-				icon: `src/images/icon-dark.png`, // Relative to the root of the site.
+				background_color: settings.manifest.backgroundColor,
+				theme_color: settings.manifest.themeColor,
+				display: settings.manifest.display,
+				icon: settings.manifest.icon, // Relative to the root of the site.
 			},
 		},
+
 		`gatsby-plugin-offline`, // Add this plugin after 'manifest'
 	],
 }

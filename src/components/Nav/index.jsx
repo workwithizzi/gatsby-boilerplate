@@ -1,59 +1,78 @@
-import React, { Component } from "react"
+// Responsive Nav component
+// Includes nav toggle button and basic responsive styling
+import React, { Fragment, useState } from 'react'
+import {v4 as uuid} from 'uuid'
 
-import { OpenIcon } from "../svgs/OpenIcon"
-import { CloseIcon } from "../svgs/CloseIcon"
-import { MainMenu } from "./MainMenu"
-
-import styles from "./nav.module.sass"
+import { Link, OpenIcon, CloseIcon } from '../index'
+import styles from './nav.module.sass'
+import { settings } from '../../../data'
 
 
 // Using react to conditionally render which menu button to show
 // Using css to hide/show the menu depending on state so that the
 // menu will always be accessible for screen-readers and SEO
-class Nav extends Component {
-	state = {
-		showMenu: false,
-	}
-	render() {
+export function Nav() {
+	const [showMenu, setShowMenu] = useState(false)
 
-		const ButtonContent = this.state.showMenu ? (
-			<>
-				<span className="sr-only">Close Menu</span>
-				<CloseIcon />
-			</>
-		) : (
-			<>
-				<span className="sr-only">Open Menu</span>
-				<OpenIcon />
-			</>
-		)
+	// Hide/show menu button with CSS classes
+	let _menuClass = styles.mainMenu
+	showMenu && (
+		_menuClass += styles.isActive
+	)
 
-		const _menuClass = this.state.showMenu ? (
-			styles.mainMenu + styles.isActive
-		) : (
-			styles.mainMenu
-		)
+	return (
+		<nav className={styles.nav} role='navigation'>
 
-		return (
-			<nav className={styles.nav} role="navigation">
-				{/* Responsive Button */}
-				<button
-					type="button"
-					aria-expanded="false"
-					aria-controls="mainMenu"
-					className={styles.buttonToggle}
-					onClick={() => {
-						this.setState({ showMenu: !this.state.showMenu })
-					}}
-				>
-					{ButtonContent}
-				</button>
+			{/* Responsive Button */}
+			<button
+				type='button'
+				aria-expanded='false'
+				aria-controls='mainMenu'
+				className={styles.buttonToggle}
+				onClick={() => {
+					setShowMenu(!showMenu)
+				}}
+			>
+				{showMenu ? (
+					<Fragment>
+						<span className='sr-only'>Close Menu</span>
+						<CloseIcon />
+					</Fragment>
+				) : (
+					<Fragment>
+						<span className='sr-only'>Open Menu</span>
+						<OpenIcon />
+					</Fragment>
+				)}
+			</button>
 
-				<MainMenu id="mainMenu" className={_menuClass} />
-			</nav>
-		)
-	}
+			{/* Loop through menu items */}
+			<ul id='mainMenu' className={_menuClass}>
+				{settings.navMenu.map(i => (
+					<li key={uuid()}>
+						<Link to={i.link} label={i.label} />
+					</li>
+				))}
+			</ul>
+
+		</nav>
+	)
 }
 
+// :::::::::::::::::;
 
-export { Nav }
+// Basic Nav without responsive buttons/styling
+// export function Nav() {
+// 	const data = useStaticQuery(_queryMenu)
+// 	return (
+// 		<nav role='navigation'>
+// 			<ul id='mainMenu'>
+// 				{data.mainNavYaml.menu.map(item => (
+// 					<li key={item.path}>
+// 						<Link to={item.path}>{item.title}</Link>
+// 					</li>
+// 				))}
+// 			</ul>
+// 		</nav>
+// 	)
+// }
